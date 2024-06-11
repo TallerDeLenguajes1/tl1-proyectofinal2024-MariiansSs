@@ -1,0 +1,15 @@
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.exe
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.deps.json
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.runtimeconfig.json
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.dll
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.pdb
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.GeneratedMSBuildEditorConfig.editorconfig
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.AssemblyInfoInputs.cache
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.AssemblyInfo.cs
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.csproj.CoreCompileInputs.cache
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.sourcelink.json
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.dll
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\refint\tl1-proyectofinal2024-MariiansSs.dll
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.pdb
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.genruntimeconfig.cache
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\ref\tl1-proyectofinal2024-MariiansSs.dll
