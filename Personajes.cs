@@ -31,11 +31,11 @@ public class Personaje
         public int Fuerza { get => fuerza; set => fuerza = value; }
         public int Armadura { get => armadura; }
         public int Salud { get => salud; set => salud = value; }
-        public int Nivelfuria {get => nivelFuria; set => nivelFuria = value;}
+        public int Nivelfuria { get => nivelFuria; set => nivelFuria = value; }
 
-        public int Pociondevida {get => pocionDeVida;}
+        public int Pociondevida { get => pocionDeVida; }
 
-        
+
         public Caracteristicas(int Velocidad, int Destreza, int Fuerza, int Armadura)
         {
             Random numeroRandom = new Random();
@@ -46,7 +46,7 @@ public class Personaje
             this.armadura = Armadura;
             this.salud = 100;
             this.nivelFuria = 0;
-            this.pocionDeVida = numeroRandom.Next(0,31);
+            this.pocionDeVida = numeroRandom.Next(0, 31);
         }
     }
 
@@ -58,9 +58,9 @@ public class Personaje
 
         private string tipoClase; //Luchador, Tirador, Asesino, Mago;
 
-        public string Name { get => name;}
-        public string Region { get => region;}
-        public string Tipoclase { get => tipoClase;}
+        public string Name { get => name; }
+        public string Region { get => region; }
+        public string Tipoclase { get => tipoClase; }
 
         public Datos(string Name, string Region, string Tipoclase)
         {
@@ -74,25 +74,46 @@ public class Personaje
 
 public class FabricaDePersonajes
 {
-    private Personaje[] arregloPersonajes;
+    private List<Personaje> listaPersonajes;
 
     public FabricaDePersonajes()
     {
-        arregloPersonajes = new Personaje[9];
+        listaPersonajes = new List<Personaje>();
         CrearPersonajes();
     }
 
     private void CrearPersonajes()
     {
-        arregloPersonajes[0]= new Personaje(2,1,6,9,"Garen","Demacia","Luchador");
-        arregloPersonajes[1]= new Personaje(4,2,8,7,"Lux","Demacia","Mago");
-        arregloPersonajes[2]= new Personaje(9,7,9,2,"Lucian","Demacia","Tirador");
-        arregloPersonajes[3]= new Personaje(9,7,9,2,"Lucian","Demacia","Tirador");
-        arregloPersonajes[4]= new Personaje(2,1,9,6,"Darius","Noxus","Luchador");
-        arregloPersonajes[5]= new Personaje(9,7,9,2,"Samira","Noxus","Tirador");
-        arregloPersonajes[6]= new Personaje(2,4,7,7,"Swain","Noxus","Mago");
-        arregloPersonajes[7]= new Personaje(9,7,9,2,"Ashe","Freljord","Tirador");
-        arregloPersonajes[8]= new Personaje(1,1,6,10,"Sejuani","Freljord","Luchador");
-        arregloPersonajes[9]= new Personaje(5,5,8,5,"Lissandra","Freljord","Mago");
+        listaPersonajes.Add(new Personaje(2, 1, 6, 9, "Garen", "Demacia", "Luchador"));
+        listaPersonajes.Add(new Personaje(4, 2, 8, 7, "Lux", "Demacia", "Mago"));
+        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Lucian", "Demacia", "Tirador"));
+        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Lucian", "Demacia", "Tirador"));
+        listaPersonajes.Add(new Personaje(2, 1, 9, 6, "Darius", "Noxus", "Luchador"));
+        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Samira", "Noxus", "Tirador"));
+        listaPersonajes.Add(new Personaje(2, 4, 7, 7, "Swain", "Noxus", "Mago"));
+        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Ashe", "Freljord", "Tirador"));
+        listaPersonajes.Add(new Personaje(1, 1, 6, 10, "Sejuani", "Freljord", "Luchador"));
+        listaPersonajes.Add(new Personaje(5, 5, 8, 5, "Lissandra", "Freljord", "Mago"));
+    }
+
+    public Personaje buscarPersonajes(List<Personaje> listaPersonaje, int opcion)
+    {
+        int bandera = 0;
+        while (bandera == 0)
+        {
+            foreach (Personaje personaje in listaPersonaje)
+            {
+                if (opcion >= 0 || opcion <= 8)
+                {
+                    bandera = 1;
+                }
+                else
+                {
+                    Console.WriteLine("INGRESE UN VALOR VALIDO");
+                }
+            }
+        }
+
+        return listaPersonaje[opcion];
     }
 }
