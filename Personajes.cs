@@ -7,9 +7,13 @@ public class Personaje
     private Datos datos;
     public Personaje(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase)
     {
-        this.caracteristicas = new Caracteristicas(velocidad, destreza, fuerza, armadura);
-        this.datos = new Datos(nombre, region, tipoClase);
+        this.Caracteristicas1 = new Caracteristicas(velocidad, destreza, fuerza, armadura);
+        this.Datos1 = new Datos(nombre, region, tipoClase);
     }
+
+    public Caracteristicas Caracteristicas1 { get => caracteristicas; set => caracteristicas = value; }
+    public Datos Datos1 { get => datos; set => datos = value; }
+
     public class Caracteristicas
     {
         private int velocidad;
@@ -87,7 +91,6 @@ public class FabricaDePersonajes
         listaPersonajes.Add(new Personaje(2, 1, 6, 9, "Garen", "Demacia", "Luchador"));
         listaPersonajes.Add(new Personaje(4, 2, 8, 7, "Lux", "Demacia", "Mago"));
         listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Lucian", "Demacia", "Tirador"));
-        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Lucian", "Demacia", "Tirador"));
         listaPersonajes.Add(new Personaje(2, 1, 9, 6, "Darius", "Noxus", "Luchador"));
         listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Samira", "Noxus", "Tirador"));
         listaPersonajes.Add(new Personaje(2, 4, 7, 7, "Swain", "Noxus", "Mago"));
@@ -96,12 +99,12 @@ public class FabricaDePersonajes
         listaPersonajes.Add(new Personaje(5, 5, 8, 5, "Lissandra", "Freljord", "Mago"));
     }
 
-    public Personaje buscarPersonajes(List<Personaje> listaPersonaje, int opcion)
+    public Personaje buscarPersonajes(int opcion)
     {
         int bandera = 0;
         while (bandera == 0)
         {
-            foreach (Personaje personaje in listaPersonaje)
+            foreach (Personaje personaje in listaPersonajes)
             {
                 if (opcion >= 0 || opcion <= 8)
                 {
@@ -114,6 +117,15 @@ public class FabricaDePersonajes
             }
         }
 
-        return listaPersonaje[opcion];
+        return listaPersonajes[opcion];
     }
+
+    public void mostrarPersonaje(Personaje PersonajeAmostrar)
+    {
+        Console.Write("---PERSONAJE ELEGIDO---\n");
+        Console.Write("NOMBRE DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Name + "\n");
+        Console.Write("REGION DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Region + "\n");
+        Console.Write("CLASE DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Tipoclase + "\n");
+    }
+
 }
