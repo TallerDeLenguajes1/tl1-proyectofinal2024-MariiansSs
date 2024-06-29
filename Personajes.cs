@@ -1,4 +1,6 @@
 namespace Personajes;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 public class Personaje
 {
@@ -86,7 +88,7 @@ public class FabricaDePersonajes
         CrearPersonajes();
     }
 
-    private void CrearPersonajes()
+    public void CrearPersonajes()
     {
         listaPersonajes.Add(new Personaje(2, 1, 6, 9, "Garen", "Demacia", "Luchador"));
         listaPersonajes.Add(new Personaje(4, 2, 8, 7, "Lux", "Demacia", "Mago"));
@@ -109,6 +111,7 @@ public class FabricaDePersonajes
                 if (opcion >= 0 || opcion <= 8)
                 {
                     bandera = 1;
+                    break;
                 }
                 else
                 {
@@ -120,12 +123,19 @@ public class FabricaDePersonajes
         return listaPersonajes[opcion];
     }
 
-    public void mostrarPersonaje(Personaje PersonajeAmostrar)
+    public void mostrarPersonajeParaElegir()
     {
-        Console.Write("---PERSONAJE ELEGIDO---\n");
-        Console.Write("NOMBRE DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Name + "\n");
-        Console.Write("REGION DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Region + "\n");
-        Console.Write("CLASE DEL PERSONAJE:" + PersonajeAmostrar.Datos1.Tipoclase + "\n");
+        Console.WriteLine("----PERSONAJES PARA ELEGIR-----");
+        for (int i = 0; i < listaPersonajes.Count; i++)
+        {
+            Personaje mostrarPersonaje = listaPersonajes[i];
+            Console.WriteLine($"[{i}] {mostrarPersonaje.Datos1.Name}");
+        }
     }
-
+    
 }
+
+
+
+
+
