@@ -87,8 +87,7 @@ public class FabricaDePersonajes
         listaPersonajes = new List<Personaje>();
         CrearPersonajes();
     }
-
-    public void CrearPersonajes()
+    public List<Personaje> CrearPersonajes()
     {
         listaPersonajes.Add(new Personaje(2, 1, 6, 9, "Garen", "Demacia", "Luchador"));
         listaPersonajes.Add(new Personaje(4, 2, 8, 7, "Lux", "Demacia", "Mago"));
@@ -99,6 +98,7 @@ public class FabricaDePersonajes
         listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Ashe", "Freljord", "Tirador"));
         listaPersonajes.Add(new Personaje(1, 1, 6, 10, "Sejuani", "Freljord", "Luchador"));
         listaPersonajes.Add(new Personaje(5, 5, 8, 5, "Lissandra", "Freljord", "Mago"));
+        return listaPersonajes;
     }
 
     public Personaje buscarPersonajes(int opcion)

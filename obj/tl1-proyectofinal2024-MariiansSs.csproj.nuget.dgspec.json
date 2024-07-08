@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj": {}
+    "c:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj": {}
   },
   "projects": {
-    "C:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj": {
+    "c:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj",
+        "projectUniqueName": "c:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj",
         "projectName": "tl1-proyectofinal2024-MariiansSs",
-        "projectPath": "C:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj",
+        "projectPath": "c:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\tl1-proyectofinal2024-MariiansSs.csproj",
         "packagesPath": "C:\\Users\\MarianoGotardo\\.nuget\\packages\\",
-        "outputPath": "C:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\obj\\",
+        "outputPath": "c:\\TallerPractica\\ProyectoFinal\\tl1-proyectofinal2024-MariiansSs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MarianoGotardo\\AppData\\Roaming\\NuGet\\NuGet.Config"

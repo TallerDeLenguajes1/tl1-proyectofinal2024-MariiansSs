@@ -2,11 +2,17 @@
 using mensajes;
 
 Mensaje narrador = new Mensaje();
+List<Personaje> Personajes = new List<Personaje>();
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes();
+PersonajesJson guardar = new PersonajesJson();
+
+Personajes = fabricarPersonaje.CrearPersonajes();
+guardar.GuardarPersonajes(Personajes,"Personajes.json");
 
 narrador.Bienvenida();
 
 narrador.mensajeIntroduccion();
+
 
 
 /*
