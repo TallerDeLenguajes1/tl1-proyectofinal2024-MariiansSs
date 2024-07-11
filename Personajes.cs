@@ -1,13 +1,13 @@
-namespace Personajes;
+namespace PersonajesSpace;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-public class Personaje
+public class Personajes
 {
     private Caracteristicas caracteristicas;
 
     private Datos datos;
-    public Personaje(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase)
+    public Personajes(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase)
     {
         this.Caracteristicas1 = new Caracteristicas(velocidad, destreza, fuerza, armadura);
         this.Datos1 = new Datos(nombre, region, tipoClase);
@@ -80,35 +80,44 @@ public class Personaje
 
 public class FabricaDePersonajes
 {
-    private List<Personaje> listaPersonajes;
+    private List<Personajes> listaPersonajes;
 
     public FabricaDePersonajes()
     {
-        listaPersonajes = new List<Personaje>();
+        listaPersonajes = new List<Personajes>();
         CrearPersonajes();
     }
-    public List<Personaje> CrearPersonajes()
+    public List<Personajes> CrearPersonajes()
     {
-        listaPersonajes.Add(new Personaje(2, 1, 6, 9, "Garen", "Demacia", "Luchador"));
-        listaPersonajes.Add(new Personaje(4, 2, 8, 7, "Lux", "Demacia", "Mago"));
-        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Lucian", "Demacia", "Tirador"));
-        listaPersonajes.Add(new Personaje(2, 1, 9, 6, "Darius", "Noxus", "Luchador"));
-        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Samira", "Noxus", "Tirador"));
-        listaPersonajes.Add(new Personaje(2, 4, 7, 7, "Swain", "Noxus", "Mago"));
-        listaPersonajes.Add(new Personaje(9, 7, 9, 2, "Ashe", "Freljord", "Tirador"));
-        listaPersonajes.Add(new Personaje(1, 1, 6, 10, "Sejuani", "Freljord", "Luchador"));
-        listaPersonajes.Add(new Personaje(5, 5, 8, 5, "Lissandra", "Freljord", "Mago"));
+        Random estadisticaRandom = new Random();
+        int velocidad = estadisticaRandom.Next(1,10); // CONSULTAR 
+        int destreza = estadisticaRandom.Next(1,10);
+        int fuerza = estadisticaRandom.Next(1,10);
+        int armadura = estadisticaRandom.Next(1,10);
+        int nivelFuria = estadisticaRandom.Next(1,10);
+
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Garen", "Demacia", "Luchador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lux", "Demacia", "Mago"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lucian", "Demacia", "Tirador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Darius", "Noxus", "Luchador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Samira", "Noxus", "Tirador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Swain", "Noxus", "Mago"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Ashe", "Freljord", "Tirador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Sejuani", "Freljord", "Luchador"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lissandra", "Freljord", "Mago"));
+        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "RekSai", "Vacio", "Luchador"));
+
         return listaPersonajes;
     }
 
-    public Personaje buscarPersonajes(int opcion)
+    public Personajes buscarPersonajes(int opcion)
     {
         int bandera = 0;
         while (bandera == 0)
         {
-            foreach (Personaje personaje in listaPersonajes)
+            foreach (Personajes personaje in listaPersonajes)
             {
-                if (opcion >= 0 || opcion <= 8)
+                if (opcion >= 0 || opcion <= 9)
                 {
                     bandera = 1;
                     break;
@@ -123,12 +132,12 @@ public class FabricaDePersonajes
         return listaPersonajes[opcion];
     }
 
-    public void mostrarPersonajeParaElegir()
+    public void mostrarPersonajeAElegir()
     {
         Console.WriteLine("----PERSONAJES PARA ELEGIR-----");
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
-            Personaje mostrarPersonaje = listaPersonajes[i];
+            Personajes mostrarPersonaje = listaPersonajes[i];
             Console.WriteLine($"[{i}] {mostrarPersonaje.Datos1.Name}");
         }
     }

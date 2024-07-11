@@ -1,6 +1,6 @@
-namespace mensajes;
+namespace mensajesSpace;
 
-public class Mensaje
+public class Mensajes
 {
     public void Bienvenida()
     {

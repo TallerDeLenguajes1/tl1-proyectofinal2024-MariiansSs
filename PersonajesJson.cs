@@ -1,14 +1,14 @@
-using Personajes;
+using PersonajesSpace;
 using System.Text.Json;
 using helperJson;
 
 public class PersonajesJson
 {
 
-    string nombreArchivo = "Personajes.json";
+    string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
     private HelperDeJson helperArchivos = new HelperDeJson();
 
-    public void GuardarPersonajes(List<Personaje> personaje, string NombreArchivo)
+    public void GuardarPersonajes(List<Personajes> personaje, string NombreArchivo)
     {
         Console.WriteLine("--Serializando--");
         string personajesJson = JsonSerializer.Serialize(personaje);
@@ -17,12 +17,12 @@ public class PersonajesJson
         helperArchivos.GuardarPersonajes(nombreArchivo, personajesJson);
     }
 
-    public List<Personaje> LeerPersonajes(string NombreArchivo)
+    public List<Personajes> LeerPersonajes(string NombreArchivo)
     {
         Console.WriteLine("--Abriendo--");
         string jsonDocument = helperArchivos.AbrirArchivoTexto(NombreArchivo);
         Console.WriteLine("--Deserializando--");
-        var listaPersonajes = JsonSerializer.Deserialize<List<Personaje>>(jsonDocument);
+        var listaPersonajes = JsonSerializer.Deserialize<List<Personajes>>(jsonDocument);
         Console.WriteLine("--Mostrando datos recuperardos--");
         return listaPersonajes;
     }
@@ -32,11 +32,11 @@ public class PersonajesJson
     {
         if (File.Exists(nombreArchivo))
         {
-            // Verificar si el archivo tiene datos
-            string fileContent = File.ReadAllText(nombreArchivo);
-            return !string.IsNullOrEmpty(fileContent);
+            // Verifico si el archivo tiene datos
+            string contenidoArchivo = File.ReadAllText(nombreArchivo);
+            return !string.IsNullOrEmpty(contenidoArchivo); // Controla si el archivo no esta vacio
         }
-        return false; // El archivo no existe o está vacío
+        return false; //El archivo no existe o está vacío
     }
 
 }

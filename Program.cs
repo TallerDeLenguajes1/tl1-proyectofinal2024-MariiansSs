@@ -1,16 +1,15 @@
-﻿using Personajes;
-using mensajes;
+﻿using PersonajesSpace;
+using mensajesSpace;
 
-Mensaje narrador = new Mensaje();
-List<Personaje> Personajes = new List<Personaje>();
+Mensajes narrador = new Mensajes();
+List<Personajes> Personajes = new List<Personajes>();
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes();
 PersonajesJson guardar = new PersonajesJson();
 
-Personajes = fabricarPersonaje.CrearPersonajes();
-guardar.GuardarPersonajes(Personajes,"Personajes.json");
+
+
 
 narrador.Bienvenida();
-
 narrador.mensajeIntroduccion();
 
 
