@@ -1,13 +1,17 @@
+namespace PersonajesJS;
 using PersonajesSpace;
 using System.Text.Json;
 using helperJson;
 
 public class PersonajesJson
 {
-
-    string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
+    string nombreArchivo {get;}
     private HelperDeJson helperArchivos = new HelperDeJson();
 
+    public PersonajesJson(string NombreArchivo)
+    {
+        this.nombreArchivo = NombreArchivo;
+    }
     public void GuardarPersonajes(List<Personajes> personaje, string NombreArchivo)
     {
         Console.WriteLine("--Serializando--");

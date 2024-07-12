@@ -85,27 +85,21 @@ public class FabricaDePersonajes
     public FabricaDePersonajes()
     {
         listaPersonajes = new List<Personajes>();
-        CrearPersonajes();
     }
     public List<Personajes> CrearPersonajes()
     {
-        Random estadisticaRandom = new Random();
-        int velocidad = estadisticaRandom.Next(1,10); // CONSULTAR 
-        int destreza = estadisticaRandom.Next(1,10);
-        int fuerza = estadisticaRandom.Next(1,10);
-        int armadura = estadisticaRandom.Next(1,10);
-        int nivelFuria = estadisticaRandom.Next(1,10);
+        Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Garen", "Demacia", "Luchador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lux", "Demacia", "Mago"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lucian", "Demacia", "Tirador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Darius", "Noxus", "Luchador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Samira", "Noxus", "Tirador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Swain", "Noxus", "Mago"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Ashe", "Freljord", "Tirador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Sejuani", "Freljord", "Luchador"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "Lissandra", "Freljord", "Mago"));
-        listaPersonajes.Add(new Personajes(velocidad, destreza, fuerza, armadura, "RekSai", "Vacio", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10),ER.Next(1,10), ER.Next(1,10), "Garen", "Demacia", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lux", "Demacia", "Mago"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lucian", "Demacia", "Tirador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Darius", "Noxus", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Samira", "Noxus", "Tirador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Swain", "Noxus", "Mago"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Ashe", "Freljord", "Tirador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Sejuani", "Freljord", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lissandra", "Freljord", "Mago"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "RekSai", "Vacio", "Luchador"));
 
         return listaPersonajes;
     }

@@ -18,7 +18,6 @@ using PersonajesSpace;
         }
 
         historial.Add(new Partida { Ganador = ganador, Informacion = informacion });
-
         string historialJson = JsonSerializer.Serialize(historial);
         helperArchivos.GuardarPersonajes(nombreArchivo, historialJson);
     }
@@ -29,7 +28,7 @@ using PersonajesSpace;
         {
             return new List<Partida>();
         }
-
+        
         string jsonDocument = helperArchivos.AbrirArchivoTexto(nombreArchivo);
         var historial = JsonSerializer.Deserialize<List<Partida>>(jsonDocument);
 
