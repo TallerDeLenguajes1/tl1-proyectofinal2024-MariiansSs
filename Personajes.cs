@@ -1,44 +1,58 @@
 namespace PersonajesSpace;
-using System.Text.Json;
-using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+
 
 public class Personajes
 {
     private Caracteristicas caracteristicas;
-
     private Datos datos;
+    
     public Personajes(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase)
     {
         this.Caracteristicas1 = new Caracteristicas(velocidad, destreza, fuerza, armadura);
         this.Datos1 = new Datos(nombre, region, tipoClase);
     }
 
+    public Personajes()
+    {
+           //Para deserializar
+    }
+
+    
     public Caracteristicas Caracteristicas1 { get => caracteristicas; set => caracteristicas = value; }
     public Datos Datos1 { get => datos; set => datos = value; }
 
     public class Caracteristicas
     {
+
         private int velocidad;
-
         private int destreza;
-
         private int fuerza;
-
         private int armadura;
-
         private int salud;
-
         private int nivelFuria; // 1 - 5
-
         private int pocionDeVida;
 
+        
+        [JsonPropertyName("Velocidad")]
         public int Velocidad { get => velocidad; }
+
+        [JsonPropertyName("Destreza")]
         public int Destreza { get => destreza; }
+
+        [JsonPropertyName("Fuerza")]
         public int Fuerza { get => fuerza; set => fuerza = value; }
+
+        [JsonPropertyName("Armadura")]
         public int Armadura { get => armadura; }
+
+        [JsonPropertyName("Salud")]
         public int Salud { get => salud; set => salud = value; }
+
+        [JsonPropertyName("Nivelfuria")]
         public int Nivelfuria { get => nivelFuria; set => nivelFuria = value; }
 
+        [JsonPropertyName("Pociondevida")]
         public int Pociondevida { get => pocionDeVida; }
 
 
@@ -64,8 +78,13 @@ public class Personajes
 
         private string tipoClase; //Luchador, Tirador, Asesino, Mago;
 
+        [JsonPropertyName("Name")]
         public string Name { get => name; }
+
+        [JsonPropertyName("Region")]
         public string Region { get => region; }
+
+        [JsonPropertyName("Tipoclase")]
         public string Tipoclase { get => tipoClase; }
 
         public Datos(string Name, string Region, string Tipoclase)
@@ -104,7 +123,7 @@ public class FabricaDePersonajes
         return listaPersonajes;
     }
 
-    public Personajes buscarPersonajes(int opcion)
+    public Personajes buscarPersonajes(int opcion, List<Personajes> listaPersonajes)
     {
         int bandera = 0;
         while (bandera == 0)
@@ -126,13 +145,14 @@ public class FabricaDePersonajes
         return listaPersonajes[opcion];
     }
 
-    public void mostrarPersonajeAElegir()
+    public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
         Console.WriteLine("----PERSONAJES PARA ELEGIR-----");
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];
-            Console.WriteLine($"[{i}] {mostrarPersonaje.Datos1.Name}");
+            Console.WriteLine($"[{i}] {mostrarPersonaje.Datos1.Name} {mostrarPersonaje.Datos1.Region} {mostrarPersonaje.Datos1.Tipoclase}");
+            
         }
     }
     

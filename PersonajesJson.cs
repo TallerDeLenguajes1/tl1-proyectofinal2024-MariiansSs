@@ -3,6 +3,8 @@ using PersonajesSpace;
 using System.Text.Json;
 using helperJson;
 
+
+
 public class PersonajesJson
 {
     string nombreArchivo {get;}
@@ -14,20 +16,18 @@ public class PersonajesJson
     }
     public void GuardarPersonajes(List<Personajes> personaje, string NombreArchivo)
     {
-        Console.WriteLine("--Serializando--");
+        //"--Serializando--"
         string personajesJson = JsonSerializer.Serialize(personaje);
-        Console.WriteLine("Archivo Serializado : " + personajesJson);
-        Console.WriteLine("--Guardando--");
+        //"--Guardando--"
         helperArchivos.GuardarPersonajes(nombreArchivo, personajesJson);
     }
 
     public List<Personajes> LeerPersonajes(string NombreArchivo)
     {
-        Console.WriteLine("--Abriendo--");
+        //"--Abriendo--"
         string jsonDocument = helperArchivos.AbrirArchivoTexto(NombreArchivo);
-        Console.WriteLine("--Deserializando--");
-        var listaPersonajes = JsonSerializer.Deserialize<List<Personajes>>(jsonDocument);
-        Console.WriteLine("--Mostrando datos recuperardos--");
+        //"--Deserializando--"
+        List<Personajes> listaPersonajes = JsonSerializer.Deserialize<List<Personajes>>(jsonDocument);
         return listaPersonajes;
     }
 
