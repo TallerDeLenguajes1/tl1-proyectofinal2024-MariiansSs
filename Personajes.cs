@@ -125,19 +125,31 @@ public class FabricaDePersonajes
 
     public Personajes buscarPersonajes(int opcion, List<Personajes> listaPersonajes)
     {
+        Random personajeRandom = new Random();
         int bandera = 0;
         while (bandera == 0)
         {
             foreach (Personajes personaje in listaPersonajes)
             {
-                if (opcion >= 0 || opcion <= 9)
+                if (opcion >= 0 && opcion <= 9)
                 {
                     bandera = 1;
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("INGRESE UN VALOR VALIDO");
+                    Console.WriteLine("Lo siento!, por ahora no tenemos disponible esa opcion, porfavor, elige las anteriormente mencionadas");
+                    string nuevaOpcion = Console.ReadLine();
+
+                    if(int.TryParse(nuevaOpcion, out opcion))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                      Console.WriteLine("Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti!");
+                      opcion = personajeRandom.Next(0,10);
+                    }
                 }
             }
         }
