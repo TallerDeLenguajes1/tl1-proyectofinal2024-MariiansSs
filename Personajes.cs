@@ -167,6 +167,14 @@ public class FabricaDePersonajes
             
         }
     }
+
+    public Personajes generarOponente(List<Personajes> listaPersonajes)
+    {
+        Random oponenteRandom = new Random();
+        int oponente = oponenteRandom.Next(listaPersonajes.Count);
+
+        return listaPersonajes[oponente];
+    }
     
 }
 
