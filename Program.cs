@@ -59,8 +59,10 @@ if(int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
 
 //GENERANDO OPONENTE
 oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
+ListaCombate.Add(oponenteGenerado);
 Console.WriteLine("¡TU OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!");
 Console.WriteLine($"{oponenteGenerado.Datos1.Name} {oponenteGenerado.Datos1.Region} {oponenteGenerado.Datos1.Tipoclase}");
+
 
 
 
