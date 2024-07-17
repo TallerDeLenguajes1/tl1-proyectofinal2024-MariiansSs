@@ -66,7 +66,7 @@ public class Personajes
             this.armadura = Armadura;
             this.salud = 100;
             this.nivelFuria = 0;
-            this.pocionDeVida = numeroRandom.Next(0, 51);
+            this.pocionDeVida = numeroRandom.Next(0, 21);
         }
     }
 
@@ -95,28 +95,6 @@ public class Personajes
         }
     }
 
-    public int atacar()
-    {
-        Random efectividadRandom = new Random();
-        int ataque = Caracteristicas1.Destreza * Caracteristicas1.Fuerza;
-        int efectividad = efectividadRandom.Next(1,101);
-        int defensa = Caracteristicas1.Armadura * Caracteristicas1.Velocidad;
-        int ajuste = 500;
-        int danioProvocado = ((ataque * efectividad)-defensa)/ajuste;
-        
-        return danioProvocado;
-    }
-
-    public void tomarPocion()
-    {
-        Caracteristicas1.Salud = caracteristicas.Salud + Caracteristicas1.Pociondevida;
-    }
-
-    public void reducirSalud(int danioProvocado)
-    {
-        Caracteristicas1.Salud = Caracteristicas1.Salud - danioProvocado;
-    }
-
 
 }
 
@@ -132,7 +110,7 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10),ER.Next(1,10), ER.Next(1,10), "Garen", "Demacia", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(50,100), ER.Next(50,100),ER.Next(50,100), ER.Next(50,100), "Garen", "Demacia", "Luchador"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lux", "Demacia", "Mago"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lucian", "Demacia", "Tirador"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Darius", "Noxus", "Luchador"));

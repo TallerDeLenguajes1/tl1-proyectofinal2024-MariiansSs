@@ -1,6 +1,6 @@
 namespace combateSpace;
 using PersonajesSpace;
-using mensajesSpace;
+
 
 public class Combate
 {
@@ -8,66 +8,107 @@ public class Combate
 
     private Personajes PersonajeOponente;
 
-    public Combate(Personajes PersonajeElegido, Personajes PersonajeOponente)
+    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente)
     {
-        this.PersonajeElegido = PersonajeElegido;
-        this.PersonajeOponente = PersonajeOponente;
-    }
-
-    public Personajes iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente)
-    {
-        int decision, danioProvocado,;
-        int banderaDecision = 0;
-        Personajes ganador = new Personajes();
-        while (PersonajeElegido.Caracteristicas1.Salud >= 0 || PersonajeElegido.Caracteristicas1.Salud >= 0)
-            Console.WriteLine("Invocador, ¿cual sera tu primera decision de combate?");
-        Console.WriteLine("1: ATACAR ");
-        Console.WriteLine("2: CURARSE ");
-        Console.WriteLine("3: ¡UTILIZAR LA DEFINITIVA! ");
-        if (int.TryParse(Console.ReadLine(), out decision))
+        Random decisionAleatoria = new Random();
+        int decisionPersonaje;
+        int ganador = 0;
+        while (PersonajeElegido.Caracteristicas1.Salud >= 0 && PersonajeOponente.Caracteristicas1.Salud >= 0)
         {
-            while (banderaDecision == 0)
+            if (PersonajeElegido.Caracteristicas1.Salud > 0)
             {
-                switch (decision)
+                decisionPersonaje = decisionAleatoria.Next(1, 3);
+                switch (decisionPersonaje)
                 {
                     case 1:
-                        danioProvocado = PersonajeElegido.atacar();
-                        PersonajeOponente.reducirSalud(danioProvocado);
-                        PersonajeOponente.Caracteristicas1.Nivelfuria++;
-                        banderaDecision = 1;
+                        atacar(PersonajeElegido, PersonajeOponente);
                         break;
                     case 2:
-                        PersonajeElegido.tomarPocion();
-                        banderaDecision = 1;
-                        break;
-                    case 3:
-                        danioProvocado = PersonajeElegido.atacar();
-                        if(PersonajeElegido.Caracteristicas1.Nivelfuria == 5)
+                        if (PersonajeElegido.Caracteristicas1.Salud < 30)
                         {
-                            danioProvocado = danioProvocado * 2;
-                            banderaDecision = 1;
-                        }else
-                        {
-                            Console.WriteLine("Invocador, tu personaje esta demasiado tranquilo para usar esta accion!");
+                            tomarPocion(PersonajeElegido);
                         }
                         break;
-             }
+                }
             }
-        }
-        else
+
+            if (PersonajeOponente.Caracteristicas1.Salud > 0)
             {
-                Console.WriteLine($"Mala idea Invocador!, al parecer {PersonajeElegido.Datos1.Name} se ha distraido y perdio su turno");
+                decisionPersonaje = decisionAleatoria.Next(1, 3);
+                switch (decisionPersonaje)
+                {
+                    case 1:
+                        atacar(PersonajeOponente, PersonajeElegido);
+                        break;
+                    case 2:
+                        if (PersonajeOponente.Caracteristicas1.Salud < 30)
+                        {
+                            tomarPocion(PersonajeOponente);
+                        }
+                        break;
+                }
             }
-
-        if (PersonajeOponente.Caracteristicas1.Salud >= 0)
-        {
-            Random decisionAleatoria = new Random();
-            int decisionOponente = decisionAleatoria.Next(1, 3);
         }
 
 
+        if (PersonajeElegido.Caracteristicas1.Salud <= 0)
+        {
+            Console.WriteLine($"Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.");
+            Console.WriteLine("FIN DEL JUEGO");
+            ganador = 0;
+        }
+
+
+        if (PersonajeOponente.Caracteristicas1.Salud <= 0)
+        {
+            Console.WriteLine($"{PersonajeOponente.Datos1.Name} ha sido derrotado.");
+            Console.WriteLine("Felicidades Invocador, has pasado a la siguiente pelea!");
+            PersonajeElegido.Caracteristicas1.Salud = 100;
+            ganador = 1;
+        }
 
         return ganador;
     }
 
+    public void atacar(Personajes Atacante, Personajes Defensor)
+    {
+        Random efectividadRandom = new Random();
+        int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
+        int efectividad = efectividadRandom.Next(1, 101);
+        int defensa = Atacante.Caracteristicas1.Armadura * Atacante.Caracteristicas1.Velocidad;
+        int ajuste = 50;
+        int danioProvocado = ((ataque * efectividad) - defensa) / ajuste;
+
+        if (Atacante.Caracteristicas1.Nivelfuria == 5)
+        {
+            danioProvocado = danioProvocado * 2;
+        }
+
+        Defensor.Caracteristicas1.Salud -= danioProvocado;
+        Defensor.Caracteristicas1.Nivelfuria++;
+
+        Console.WriteLine($"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}");
+        Console.WriteLine($"VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
+
+    }
+    public void tomarPocion(Personajes Personaje)
+    {
+        if (Personaje.Caracteristicas1.Salud == 100)
+        {
+            Personaje.Caracteristicas1.Salud = 100;
+            Console.WriteLine($"Vaya! parece que {Personaje.Datos1.Name} ha intentado algo que no sirvio para nada");
+        }
+        else
+        {
+            Personaje.Caracteristicas1.Salud += Personaje.Caracteristicas1.Pociondevida;
+            if (Personaje.Caracteristicas1.Salud > 100)
+            {
+                Personaje.Caracteristicas1.Salud = 100;
+            }
+            Console.WriteLine($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}");
+        }
+
+
+
+    }
 }
