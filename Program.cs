@@ -6,7 +6,6 @@ using combateSpace;
 string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
 Mensajes narrador = new Mensajes();
 List<Personajes> Personajes = new List<Personajes>();
-List<Personajes> ListaCombate = new List<Personajes>();
 Personajes personajeElegido = new Personajes();
 Personajes oponenteGenerado = new Personajes();
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes();
@@ -15,6 +14,7 @@ Combate combates = new Combate();
 int opcionPersonaje;
 string caracterOpcionPersonaje;
 int bandera = 0, finBatalla = 1;
+
 
 
 
@@ -37,23 +37,22 @@ narrador.mensajeIntroduccion();
 
 // ELEGIENDO PERSONAJE
 narrador.preguntaSobrePersonaje();
-fabricarPersonaje.mostrarPersonajeAElegir(Personajes);
+fabricarPersonaje.mostrarPersonajeAElegir(Personajes); // Consultar como centrar 
 caracterOpcionPersonaje = Console.ReadLine();
 while (bandera != 1)
 {
 if(int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
 {
     personajeElegido = fabricarPersonaje.buscarPersonajes(opcionPersonaje, Personajes);
-    Console.WriteLine("---EL PERSONAJE ELEGIDO ES:---");
+    narrador.mostrarPersonajeElegido();
     Console.WriteLine($"{personajeElegido.Datos1.Name} {personajeElegido.Datos1.Region} {personajeElegido.Datos1.Tipoclase}");
     Personajes.Remove(personajeElegido);
-    ListaCombate.Add(personajeElegido);
 
 
     bandera = 1;
 }else
 {
-    Console.WriteLine("Lo siento!, no existe ese personaje actualmente");
+    narrador.errorPersonaje();
     narrador.preguntaSobrePersonaje();
     fabricarPersonaje.mostrarPersonajeAElegir(Personajes);
     caracterOpcionPersonaje = Console.ReadLine();
@@ -63,9 +62,8 @@ if(int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
 //GENERANDO OPONENTE
 oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
 Personajes.Remove(oponenteGenerado);
-ListaCombate.Add(oponenteGenerado);
-Console.WriteLine("¡TU OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!");
-Console.WriteLine($"{oponenteGenerado.Datos1.Name} {oponenteGenerado.Datos1.Region} {oponenteGenerado.Datos1.Tipoclase}");
+Console.WriteLine(@$"¡TU OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!
+Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
 
 //COMBATE
 while(finBatalla == 1 && Personajes.Count > 0)

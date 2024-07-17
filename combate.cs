@@ -13,7 +13,7 @@ public class Combate
         Random decisionAleatoria = new Random();
         int decisionPersonaje;
         int ganador = 0;
-        while (PersonajeElegido.Caracteristicas1.Salud >= 0 && PersonajeOponente.Caracteristicas1.Salud >= 0)
+        while (PersonajeElegido.Caracteristicas1.Salud > 0 && PersonajeOponente.Caracteristicas1.Salud > 0)
         {
             if (PersonajeElegido.Caracteristicas1.Salud > 0)
             {
@@ -87,9 +87,12 @@ public class Combate
         Defensor.Caracteristicas1.Salud -= danioProvocado;
         Defensor.Caracteristicas1.Nivelfuria++;
 
-        Console.WriteLine($"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}");
-        Console.WriteLine($"VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
-
+        if(Defensor.Caracteristicas1.Salud < 0 )
+        {
+            Defensor.Caracteristicas1.Salud = 0;
+        }
+        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}
+VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
     }
     public void tomarPocion(Personajes Personaje)
     {
@@ -107,8 +110,7 @@ public class Combate
             }
             Console.WriteLine($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}");
         }
-
-
-
     }
+
+
 }

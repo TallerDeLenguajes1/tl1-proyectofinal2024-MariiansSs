@@ -160,13 +160,12 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        Console.WriteLine("----PERSONAJES PARA ELEGIR-----");
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];
-            Console.WriteLine($"[{i}] {mostrarPersonaje.Datos1.Name} {mostrarPersonaje.Datos1.Region} {mostrarPersonaje.Datos1.Tipoclase}");
-            
+            Console.WriteLine($"[{i}]  ℕ𝕠𝕞𝕓𝕣𝕖: -{mostrarPersonaje.Datos1.Name}-  ℝ𝕖𝕘𝕚𝕠𝕟: {mostrarPersonaje.Datos1.Region}    ℂ𝕝𝕒𝕤𝕖: -{mostrarPersonaje.Datos1.Tipoclase}-");
         }
+        
     }
 
     public Personajes generarOponente(List<Personajes> listaPersonajes)
