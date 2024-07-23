@@ -1,5 +1,6 @@
 namespace PersonajesSpace;
 using System.Text.Json.Serialization;
+using Spectre.Console; // Mostrar tablas/diseños por consola
 
 
 public class Personajes
@@ -66,7 +67,7 @@ public class Personajes
             this.armadura = Armadura;
             this.salud = 100;
             this.nivelFuria = 0;
-            this.pocionDeVida = numeroRandom.Next(0, 21);
+            this.pocionDeVida = numeroRandom.Next(1, 21);
         }
     }
 
@@ -110,7 +111,7 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(50,100), ER.Next(50,100),ER.Next(50,100), ER.Next(50,100), "Garen", "Demacia", "Luchador"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10),ER.Next(1,10), ER.Next(1,10), "Garen", "Demacia", "Luchador"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lux", "Demacia", "Mago"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lucian", "Demacia", "Tirador"));
         listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Darius", "Noxus", "Luchador"));
@@ -160,12 +161,22 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
+        var tabla = new Table();
+        tabla.AddColumn("ID");  
+        tabla.AddColumn("Nombre");
+        tabla.AddColumn("Región");  // Agrego columnas a la tabla
+        tabla.AddColumn("Clase"); 
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];
-            Console.WriteLine($"[{i}]  ℕ𝕠𝕞𝕓𝕣𝕖: -{mostrarPersonaje.Datos1.Name}-  ℝ𝕖𝕘𝕚𝕠𝕟: {mostrarPersonaje.Datos1.Region}    ℂ𝕝𝕒𝕤𝕖: -{mostrarPersonaje.Datos1.Tipoclase}-");
+              tabla.AddRow(
+                i.ToString(), // Índice como texto simple  
+                mostrarPersonaje.Datos1.Name, // Nombre
+                mostrarPersonaje.Datos1.Region, // Región
+                mostrarPersonaje.Datos1.Tipoclase // Clase
+            ); // Agrego filas
         }
-        
+        AnsiConsole.Render(tabla); // Mostrar tabla
     }
 
     public Personajes generarOponente(List<Personajes> listaPersonajes)

@@ -1,5 +1,6 @@
 namespace combateSpace;
 using PersonajesSpace;
+using System.Threading; // Para retrasar la muestra de mensajes
 
 
 public class Combate
@@ -18,43 +19,46 @@ public class Combate
             if (PersonajeElegido.Caracteristicas1.Salud > 0)
             {
                 decisionPersonaje = decisionAleatoria.Next(1, 3);
-                switch (decisionPersonaje)
+                if(decisionPersonaje == 1)
                 {
-                    case 1:
-                        atacar(PersonajeElegido, PersonajeOponente);
-                        break;
-                    case 2:
-                        if (PersonajeElegido.Caracteristicas1.Salud < 30)
-                        {
-                            tomarPocion(PersonajeElegido);
-                        }
-                        break;
-                }
+                    atacar(PersonajeElegido, PersonajeOponente);
+                    
+                }else 
+                    if(decisionPersonaje == 2 && PersonajeElegido.Caracteristicas1.Salud < 30)
+                    {
+                        tomarPocion(PersonajeElegido);
+                        
+                    }else
+                    {
+                        atacar(PersonajeElegido, PersonajeOponente);     
+                    }   
             }
-
-            if (PersonajeOponente.Caracteristicas1.Salud > 0)
+        
+             if (PersonajeOponente.Caracteristicas1.Salud > 0)
             {
                 decisionPersonaje = decisionAleatoria.Next(1, 3);
-                switch (decisionPersonaje)
+                if(decisionPersonaje == 1)
                 {
-                    case 1:
+                    atacar(PersonajeOponente, PersonajeElegido);
+                    
+                }else 
+                    if(decisionPersonaje == 2 && PersonajeOponente.Caracteristicas1.Salud < 30)
+                    {
+                        tomarPocion(PersonajeOponente);
+                        
+                    }else
+                    {
                         atacar(PersonajeOponente, PersonajeElegido);
-                        break;
-                    case 2:
-                        if (PersonajeOponente.Caracteristicas1.Salud < 30)
-                        {
-                            tomarPocion(PersonajeOponente);
-                        }
-                        break;
-                }
-            }
-        }
-
+                        
+                    }
+            }   
 
         if (PersonajeElegido.Caracteristicas1.Salud <= 0)
         {
             Console.WriteLine($"Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.");
+            Thread.Sleep(3000);
             Console.WriteLine("FIN DEL JUEGO");
+            Thread.Sleep(3000);
             ganador = 0;
         }
 
@@ -62,11 +66,13 @@ public class Combate
         if (PersonajeOponente.Caracteristicas1.Salud <= 0)
         {
             Console.WriteLine($"{PersonajeOponente.Datos1.Name} ha sido derrotado.");
+            Thread.Sleep(3000);
             Console.WriteLine("Felicidades Invocador, has pasado a la siguiente pelea!");
+            Thread.Sleep(3000);
             PersonajeElegido.Caracteristicas1.Salud = 100;
             ganador = 1;
         }
-
+    }
         return ganador;
     }
 
@@ -91,26 +97,21 @@ public class Combate
         {
             Defensor.Caracteristicas1.Salud = 0;
         }
-        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}
-VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
+        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado} - VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
+        Thread.Sleep(2000);
     }
     public void tomarPocion(Personajes Personaje)
     {
-        if (Personaje.Caracteristicas1.Salud == 100)
-        {
-            Personaje.Caracteristicas1.Salud = 100;
-            Console.WriteLine($"Vaya! parece que {Personaje.Datos1.Name} ha intentado algo que no sirvio para nada");
-        }
-        else
-        {
             Personaje.Caracteristicas1.Salud += Personaje.Caracteristicas1.Pociondevida;
             if (Personaje.Caracteristicas1.Salud > 100)
             {
                 Personaje.Caracteristicas1.Salud = 100;
             }
             Console.WriteLine($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}");
+            Thread.Sleep(2000);
         }
     }
+    
 
 
-}
+    

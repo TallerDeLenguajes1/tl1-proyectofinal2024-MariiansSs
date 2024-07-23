@@ -16,3 +16,6 @@ c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.
 c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\Newtonsoft.Json.dll
 c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proyectofinal2024-MariiansSs.csproj.AssemblyReference.cache
 c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\obj\Debug\net8.0\tl1-proy.FBE4AA73.Up2Date
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\Spectre.Console.dll
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\SixLabors.ImageSharp.dll
+c:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\bin\Debug\net8.0\Spectre.Console.ImageSharp.dll
