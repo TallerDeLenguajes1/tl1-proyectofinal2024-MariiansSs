@@ -1,5 +1,6 @@
 namespace combateSpace;
 using PersonajesSpace;
+using Spectre.Console;
 using System.Threading; // Para retrasar la muestra de mensajes
 
 
@@ -78,6 +79,7 @@ public class Combate
 
     public void atacar(Personajes Atacante, Personajes Defensor)
     {
+        
         Random efectividadRandom = new Random();
         int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
         int efectividad = efectividadRandom.Next(1, 101);
@@ -98,6 +100,17 @@ public class Combate
             Defensor.Caracteristicas1.Salud = 0;
         }
         Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado} - VIDA RESTANTE DE {Defensor.Datos1.Name} ES DE %{Defensor.Caracteristicas1.Salud}");
+
+       
+
+        int anchoMinimo = 20;
+        int ancho = Math.Max(Defensor.Caracteristicas1.Salud,anchoMinimo);
+
+        AnsiConsole.Write(new BarChart()
+        .Width(ancho)
+        .Label("Porcentaje de vida")
+        .CenterLabel()
+        .AddItem($"{Defensor.Datos1.Name}", Defensor.Caracteristicas1.Salud, Color.Red));
         Thread.Sleep(2000);
     }
     public void tomarPocion(Personajes Personaje)
