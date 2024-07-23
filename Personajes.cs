@@ -161,11 +161,13 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        var tabla = new Table();
+        var tabla = new Table().Title("ＰＥＲＳＯＮＡＪＥＳ");
         tabla.AddColumn("ID");  
         tabla.AddColumn("Nombre");
         tabla.AddColumn("Región");  // Agrego columnas a la tabla
         tabla.AddColumn("Clase"); 
+
+        tabla.Border(TableBorder.Ascii2);
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];
@@ -175,7 +177,9 @@ public class FabricaDePersonajes
                 mostrarPersonaje.Datos1.Region, // Región
                 mostrarPersonaje.Datos1.Tipoclase // Clase
             ); // Agrego filas
+
         }
+       
         AnsiConsole.Render(tabla); // Mostrar tabla
     }
 

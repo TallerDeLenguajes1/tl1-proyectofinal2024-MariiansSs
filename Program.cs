@@ -17,7 +17,6 @@ string caracterOpcionPersonaje;
 int bandera = 0, finBatalla = 1;
 
 
-
 // VERIFICO SI EXISTEN LOS PERSONAJES, SI NO, LOS CREO
 
 if (jsonPersonajes.Existe(nombreArchivo))
@@ -38,7 +37,7 @@ narrador.mensajeIntroduccion();
 
 // ELEGIENDO PERSONAJE
 narrador.preguntaSobrePersonaje();
-fabricarPersonaje.mostrarPersonajeAElegir(Personajes); // Consultar como centrar 
+fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
 caracterOpcionPersonaje = Console.ReadLine();
 while (bandera != 1)
 {
@@ -79,11 +78,11 @@ while (finBatalla == 1 && Personajes.Count > 0)
         if(Personajes.Count > 1)
         {
              Console.WriteLine(@$"¡TU NUEVO OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!
-             Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
+Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
         }else
         {
              Console.WriteLine(@$"¡EL ULTIMO OPONENTE ESTA AQUI! MUCHA SUERTE INVOCADOR
-             Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
+Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
         }
        
     }
