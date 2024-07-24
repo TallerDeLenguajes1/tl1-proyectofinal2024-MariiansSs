@@ -64,6 +64,7 @@ public class Combate
             Defensor.Caracteristicas1.Salud = 0;
         }
         Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}");
+        Console.WriteLine("");
 
         int anchoMinimo = 30;
         int ancho = Math.Max(Defensor.Caracteristicas1.Salud, anchoMinimo);
@@ -73,6 +74,7 @@ public class Combate
         .Label("Porcentaje de vida")
         .CenterLabel()
         .AddItem($"{Defensor.Datos1.Name}", Defensor.Caracteristicas1.Salud, Color.Red));
+        Console.WriteLine("");
         Thread.Sleep(2000);
     }
     public void tomarPocion(Personajes Personaje)
@@ -85,12 +87,13 @@ public class Combate
         
         int anchoMinimo = 30;
         int ancho = Math.Max(Personaje.Caracteristicas1.Salud, anchoMinimo);
-
+        Console.WriteLine("");
         AnsiConsole.Write(new BarChart()
         .Width(ancho)
-        .Label("Porcentaje de vida")
+        .Label($"{Personaje.Datos1.Name} SE HA CURADO")
         .CenterLabel()
         .AddItem($"{Personaje.Datos1.Name}", Personaje.Caracteristicas1.Salud, Color.Red));
+        Console.WriteLine("");
         Thread.Sleep(2000);
     }
 

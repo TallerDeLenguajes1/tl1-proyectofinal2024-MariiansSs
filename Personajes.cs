@@ -161,13 +161,13 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        var tabla = new Table().Title("ＰＥＲＳＯＮＡＪＥＳ");
+        var tabla = new Table().Title("PERSONAJES"); // CONSULTAR COMO ACOMODAR
         tabla.AddColumn("ID");  
         tabla.AddColumn("Nombre");
         tabla.AddColumn("Región");  // Agrego columnas a la tabla
         tabla.AddColumn("Clase"); 
-
-        tabla.Border(TableBorder.Ascii2);
+        
+        tabla.Border(TableBorder.Ascii2).BorderColor(Color.Aquamarine1);
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];

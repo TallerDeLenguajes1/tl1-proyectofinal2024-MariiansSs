@@ -2,6 +2,8 @@
 using mensajesSpace;
 using PersonajesJS;
 using combateSpace;
+using Spectre.Console;
+using System.Text;
 
 
 string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
@@ -37,6 +39,9 @@ narrador.mensajeIntroduccion();
 
 // ELEGIENDO PERSONAJE
 narrador.preguntaSobrePersonaje();
+Console.WriteLine("");
+Console.WriteLine("");
+Console.WriteLine("");
 fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
 caracterOpcionPersonaje = Console.ReadLine();
 while (bandera != 1)
@@ -44,8 +49,16 @@ while (bandera != 1)
     if (int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
     {
         personajeElegido = fabricarPersonaje.buscarPersonajes(opcionPersonaje, Personajes);
-        narrador.mostrarPersonajeElegido();
-        Console.WriteLine($"{personajeElegido.Datos1.Name} {personajeElegido.Datos1.Region} {personajeElegido.Datos1.Tipoclase}");
+
+        Console.WriteLine("");
+        var panelPersonaje = new Panel($"[Black]NOMBRE:[/][Cyan]{personajeElegido.Datos1.Name}[/] [Black]REGION:[/][Cyan]{personajeElegido.Datos1.Region}[/] [Black]CLASE:[/][Cyan]{personajeElegido.Datos1.Tipoclase}[/]");
+        panelPersonaje.Header = new PanelHeader("PERSONAJE ELEGIDO");
+        panelPersonaje.Border = BoxBorder.Ascii;
+        panelPersonaje.BorderColor(Color.Aquamarine1);
+        panelPersonaje.Header.Centered();
+        AnsiConsole.Write(panelPersonaje);
+        Console.WriteLine("");
+
         Personajes.Remove(personajeElegido);
 
 
@@ -63,9 +76,17 @@ while (bandera != 1)
 //GENERANDO OPONENTE
 oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
 Personajes.Remove(oponenteGenerado);
-Console.WriteLine(@$"¡TU OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!
-Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
 
+Console.WriteLine("");
+
+var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
+panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!");
+panelOponente.Border = BoxBorder.Ascii;
+panelOponente.BorderColor(Color.Red);
+panelOponente.Header.Centered();
+AnsiConsole.Write(panelOponente);
+
+Console.WriteLine("");
 
 //COMBATE
 while (finBatalla == 1 && Personajes.Count > 0)
