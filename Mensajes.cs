@@ -31,7 +31,7 @@ public class Mensajes
 Console.WriteLine("");
 
     
-   // Thread.Sleep(3000); // Retraso de 3 segundos
+    Thread.Sleep(3000); // Retraso de 3 segundos
     }
 
     public void mensajeIntroduccion()
@@ -55,7 +55,7 @@ comienza ahora. ¡Que los mejores invocadores se enfrenten y que la
 victoria corone al mas digno![/][/]
 ");
 Console.WriteLine("");
- //Thread.Sleep(5000);
+ Thread.Sleep(5000);
     }
 
     public void preguntaSobrePersonaje()

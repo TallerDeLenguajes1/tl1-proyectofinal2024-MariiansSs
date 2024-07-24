@@ -140,7 +140,7 @@ public class FabricaDePersonajes
                 }
                 else
                 {
-                    Console.WriteLine("Lo siento!, por ahora no tenemos disponible esa opcion, porfavor, elige las anteriormente mencionadas");
+                    AnsiConsole.Markup("[Red]Lo siento!, por ahora no tenemos disponible esa opcion, porfavor, elige nuevamente las anteriormente mencionadas[/]");
                     string nuevaOpcion = Console.ReadLine();
 
                     if(int.TryParse(nuevaOpcion, out opcion))
@@ -149,7 +149,7 @@ public class FabricaDePersonajes
                     }
                     else
                     {
-                      Console.WriteLine("Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti!");
+                      Console.WriteLine("[Red]Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti![/]");
                       opcion = personajeRandom.Next(0,10);
                     }
                 }
@@ -161,17 +161,17 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        var tabla = new Table().Title("PERSONAJES"); // CONSULTAR COMO ACOMODAR
-        tabla.AddColumn("ID");  
-        tabla.AddColumn("Nombre");
-        tabla.AddColumn("Región");  // Agrego columnas a la tabla
-        tabla.AddColumn("Clase"); 
+        var tabla = new Table().Title("[Blue]PERSONAJES[/]"); // CONSULTAR COMO ACOMODAR
+        tabla.AddColumn("[Black]ID[/]");  
+        tabla.AddColumn("[Black]NOMBRE[/]");
+        tabla.AddColumn("[Black]REGION[/]");  // Agrego columnas a la tabla
+        tabla.AddColumn("[Black]CLASE[/]"); 
         
-        tabla.Border(TableBorder.Ascii2).BorderColor(Color.Aquamarine1);
+        tabla.Border(TableBorder.Ascii2).BorderColor(Color.Blue);
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
             Personajes mostrarPersonaje = listaPersonajes[i];
-              tabla.AddRow(
+            tabla.AddRow(
                 i.ToString(), // Índice como texto simple  
                 mostrarPersonaje.Datos1.Name, // Nombre
                 mostrarPersonaje.Datos1.Region, // Región

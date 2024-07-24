@@ -15,8 +15,21 @@ public class Combate
         int ganador = 0;
         while (PersonajeElegido.Caracteristicas1.Salud > 0 && PersonajeOponente.Caracteristicas1.Salud > 0)
         {
-            decisionPersonaje(PersonajeElegido, PersonajeOponente);
-            decisionPersonaje(PersonajeOponente, PersonajeElegido);
+            //REVISAR PORCENTAJE DE VIDA
+            if(decisionPersonaje(PersonajeElegido, PersonajeOponente) == 1)
+            {
+                mostrarVidaOponente(PersonajeOponente);
+            }else{
+                mostrarVidaPersonaje(PersonajeElegido);
+            }
+
+            if(decisionPersonaje(PersonajeOponente, PersonajeElegido) == 1)
+            {
+                mostrarVidaPersonaje(PersonajeElegido);
+            }else{
+                mostrarVidaOponente(PersonajeOponente);
+            }
+
 
             if (PersonajeElegido.Caracteristicas1.Salud <= 0)
             {
@@ -66,15 +79,6 @@ public class Combate
         Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}");
         Console.WriteLine("");
 
-        int anchoMinimo = 30;
-        int ancho = Math.Max(Defensor.Caracteristicas1.Salud, anchoMinimo);
-
-        AnsiConsole.Write(new BarChart()
-        .Width(ancho)
-        .Label("Porcentaje de vida")
-        .CenterLabel()
-        .AddItem($"{Defensor.Datos1.Name}", Defensor.Caracteristicas1.Salud, Color.Red));
-        Console.WriteLine("");
         Thread.Sleep(2000);
     }
     public void tomarPocion(Personajes Personaje)
@@ -85,20 +89,17 @@ public class Combate
             Personaje.Caracteristicas1.Salud = 100;
         }
         
-        int anchoMinimo = 30;
-        int ancho = Math.Max(Personaje.Caracteristicas1.Salud, anchoMinimo);
         Console.WriteLine("");
-        AnsiConsole.Write(new BarChart()
-        .Width(ancho)
-        .Label($"{Personaje.Datos1.Name} SE HA CURADO")
-        .CenterLabel()
-        .AddItem($"{Personaje.Datos1.Name}", Personaje.Caracteristicas1.Salud, Color.Red));
+        
+        AnsiConsole.Write($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}%");
+
         Console.WriteLine("");
         Thread.Sleep(2000);
     }
 
-    public void decisionPersonaje(Personajes PersonajeElegido, Personajes PersonajeOponente)
+    public int decisionPersonaje(Personajes PersonajeElegido, Personajes PersonajeOponente)
     {
+        int decision = 0;
         Random decisionAleatoria = new Random();
         int decisionPersonaje;
         if (PersonajeElegido.Caracteristicas1.Salud > 0)
@@ -107,19 +108,47 @@ public class Combate
             if (decisionPersonaje == 1)
             {
                 atacar(PersonajeElegido, PersonajeOponente);
-
+                decision = 1;
             }
             else
                 if (decisionPersonaje == 2 && PersonajeElegido.Caracteristicas1.Salud < 30)
             {
                 tomarPocion(PersonajeElegido);
-
+                decision = 2;
             }
             else
             {
                 atacar(PersonajeElegido, PersonajeOponente);
+                decision = 1;
             }
         }
+        return decision;
+    }
+
+    public void mostrarVidaPersonaje(Personajes PersonajeElegido)
+    {
+        int anchoMinimo = 30;
+        int ancho = Math.Max(PersonajeElegido.Caracteristicas1.Salud, anchoMinimo);
+
+        AnsiConsole.Write(new BarChart()
+        .Width(ancho)
+        .Label("Porcentaje de vida")
+        .CenterLabel()
+        .AddItem($"{PersonajeElegido.Datos1.Name}", PersonajeElegido.Caracteristicas1.Salud, Color.Cyan1));
+        Console.WriteLine("");
+    }
+
+    public void mostrarVidaOponente(Personajes PersonajeOponente)
+    {
+        int anchoMinimo = 30;
+        int ancho = Math.Max(PersonajeOponente.Caracteristicas1.Salud, anchoMinimo);
+
+        AnsiConsole.Write(new BarChart()
+        .Width(ancho)
+        .Label("Porcentaje de vida")
+        .CenterLabel()
+        .AddItem($"{PersonajeOponente.Datos1.Name}", PersonajeOponente.Caracteristicas1.Salud, Color.Red));
+        Console.WriteLine("");
     }
 }
 
