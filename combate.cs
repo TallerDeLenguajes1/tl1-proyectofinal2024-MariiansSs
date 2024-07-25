@@ -61,7 +61,7 @@ public class Combate
 
     public void atacar(Personajes Atacante, Personajes Defensor)
     {
-
+        
         Random efectividadRandom = new Random();
         int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
         int efectividad = efectividadRandom.Next(1, 101);
@@ -72,6 +72,10 @@ public class Combate
         if (Atacante.Caracteristicas1.Nivelfuria == 5)
         {
             danioProvocado = danioProvocado * 2;
+            Console.WriteLine("");
+            AnsiConsole.Markup($"[Red]{Atacante.Datos1.Frase}[/][Black](ESTE PERSONAJE USO SU DEFINITIVA)[/]");
+            Console.WriteLine("");
+            Atacante.Caracteristicas1.Nivelfuria = 0; //Reseteo el nivel de furia para equilibrar el combate
         }
 
         Defensor.Caracteristicas1.Salud -= danioProvocado;
@@ -84,7 +88,6 @@ public class Combate
         Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
         Console.WriteLine("");
 
-        Thread.Sleep(2000);
     }
     public void tomarPocion(Personajes Personaje)
     {
@@ -99,7 +102,7 @@ public class Combate
         AnsiConsole.Write($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}%");
 
         Console.WriteLine("");
-        Thread.Sleep(2000);
+    
     }
 
     public int decisionPersonaje(Personajes PersonajeElegido, Personajes PersonajeOponente)
@@ -141,6 +144,8 @@ public class Combate
         .CenterLabel()
         .AddItem($"{PersonajeElegido.Datos1.Name}", PersonajeElegido.Caracteristicas1.Salud, Color.Cyan1));
         Console.WriteLine("");
+
+        Thread.Sleep(2000);
     }
 
     public void mostrarVidaOponente(Personajes PersonajeOponente)
@@ -154,6 +159,8 @@ public class Combate
         .CenterLabel()
         .AddItem($"{PersonajeOponente.Datos1.Name}", PersonajeOponente.Caracteristicas1.Salud, Color.Red));
         Console.WriteLine("");
+
+        Thread.Sleep(2000);
     }
 }
 
