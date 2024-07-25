@@ -38,9 +38,10 @@ public class Combate
 
             if (PersonajeElegido.Caracteristicas1.Salud <= 0)
             {
-                Console.WriteLine($"Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.");
+                AnsiConsole.Markup($"[Red]Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.[/]");
+                Console.WriteLine("");
                 Thread.Sleep(3000);
-                Console.WriteLine("FIN DEL JUEGO");
+                AnsiConsole.Markup("[Red]FIN DEL JUEGO[/]");
                 Thread.Sleep(3000);
                 ganador = 0;
             }
@@ -48,9 +49,11 @@ public class Combate
 
             if (PersonajeOponente.Caracteristicas1.Salud <= 0)
             {
-                Console.WriteLine($"{PersonajeOponente.Datos1.Name} ha sido derrotado.");
+                AnsiConsole.Markup($"[Cyan]{PersonajeOponente.Datos1.Name} ha sido derrotado.[/]");
+                Console.WriteLine("");
                 Thread.Sleep(3000);
-                Console.WriteLine("Felicidades Invocador, has pasado a la siguiente pelea!");
+                AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
+                Console.WriteLine("");
                 Thread.Sleep(3000);
                 PersonajeElegido.Caracteristicas1.Salud = 100;
                 ganador = 1;
