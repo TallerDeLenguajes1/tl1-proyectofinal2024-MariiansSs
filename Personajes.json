@@ -1,162 +1,172 @@
 [
     {
         "Caracteristicas1": {
-            "Velocidad": 4,
-            "Destreza": 4,
-            "Fuerza": 7,
-            "Armadura": 1,
-            "Salud": 100,
-            "Nivelfuria": 0,
-            "Pociondevida": 3
-        },
-        "Datos1": {
-            "Name": "Garen",
-            "Region": "Demacia",
-            "Tipoclase": "Luchador"
-        }
-    },
-    {
-        "Caracteristicas1": {
-            "Velocidad": 2,
+            "Velocidad": 8,
             "Destreza": 5,
-            "Fuerza": 4,
-            "Armadura": 2,
+            "Fuerza": 1,
+            "Armadura": 1,
             "Salud": 100,
             "Nivelfuria": 0,
             "Pociondevida": 2
         },
         "Datos1": {
-            "Name": "Lux",
+            "Name": "Garen",
             "Region": "Demacia",
-            "Tipoclase": "Mago"
+            "Tipoclase": "Luchador",
+            "Frase": "JUUSTIICIAAAA!!!"
         }
     },
     {
         "Caracteristicas1": {
-            "Velocidad": 1,
-            "Destreza": 9,
-            "Fuerza": 3,
+            "Velocidad": 3,
+            "Destreza": 6,
+            "Fuerza": 8,
             "Armadura": 6,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 11
+            "Pociondevida": 7
+        },
+        "Datos1": {
+            "Name": "Lux",
+            "Region": "Demacia",
+            "Tipoclase": "Mago",
+            "Frase": "INCANDESCENCIA!!!"
+        }
+    },
+    {
+        "Caracteristicas1": {
+            "Velocidad": 5,
+            "Destreza": 7,
+            "Fuerza": 1,
+            "Armadura": 7,
+            "Salud": 100,
+            "Nivelfuria": 0,
+            "Pociondevida": 7
         },
         "Datos1": {
             "Name": "Lucian",
             "Region": "Demacia",
-            "Tipoclase": "Tirador"
+            "Tipoclase": "Tirador",
+            "Frase": "NO HABRA PERDON!!!"
         }
     },
     {
         "Caracteristicas1": {
             "Velocidad": 9,
-            "Destreza": 4,
-            "Fuerza": 4,
-            "Armadura": 3,
+            "Destreza": 5,
+            "Fuerza": 8,
+            "Armadura": 8,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 11
+            "Pociondevida": 19
         },
         "Datos1": {
             "Name": "Darius",
             "Region": "Noxus",
-            "Tipoclase": "Luchador"
+            "Tipoclase": "Luchador",
+            "Frase": "NO PUEDES ESCAPAR!!!"
         }
     },
     {
         "Caracteristicas1": {
-            "Velocidad": 1,
+            "Velocidad": 3,
             "Destreza": 3,
-            "Fuerza": 9,
-            "Armadura": 4,
+            "Fuerza": 6,
+            "Armadura": 3,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 0
+            "Pociondevida": 4
         },
         "Datos1": {
             "Name": "Samira",
             "Region": "Noxus",
-            "Tipoclase": "Tirador"
+            "Tipoclase": "Tirador",
+            "Frase": "VAMOS, VAMOS, VAMOS!!!"
         }
     },
     {
         "Caracteristicas1": {
-            "Velocidad": 5,
-            "Destreza": 5,
-            "Fuerza": 1,
-            "Armadura": 3,
+            "Velocidad": 3,
+            "Destreza": 3,
+            "Fuerza": 7,
+            "Armadura": 9,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 17
+            "Pociondevida": 7
         },
         "Datos1": {
             "Name": "Swain",
             "Region": "Noxus",
-            "Tipoclase": "Mago"
+            "Tipoclase": "Mago",
+            "Frase": "EL PODER DEL IMPERIO!!!"
         }
     },
     {
         "Caracteristicas1": {
-            "Velocidad": 5,
-            "Destreza": 5,
-            "Fuerza": 3,
-            "Armadura": 3,
+            "Velocidad": 8,
+            "Destreza": 8,
+            "Fuerza": 8,
+            "Armadura": 6,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 2
+            "Pociondevida": 5
         },
         "Datos1": {
             "Name": "Ashe",
             "Region": "Freljord",
-            "Tipoclase": "Tirador"
+            "Tipoclase": "Tirador",
+            "Frase": "FUEGO A DISCRECION!!!"
         }
     },
     {
         "Caracteristicas1": {
-            "Velocidad": 2,
-            "Destreza": 6,
-            "Fuerza": 4,
-            "Armadura": 9,
+            "Velocidad": 7,
+            "Destreza": 8,
+            "Fuerza": 6,
+            "Armadura": 7,
             "Salud": 100,
             "Nivelfuria": 0,
-            "Pociondevida": 30
+            "Pociondevida": 8
         },
         "Datos1": {
             "Name": "Sejuani",
             "Region": "Freljord",
-            "Tipoclase": "Luchador"
-        }
-    },
-    {
-        "Caracteristicas1": {
-            "Velocidad": 6,
-            "Destreza": 9,
-            "Fuerza": 8,
-            "Armadura": 1,
-            "Salud": 100,
-            "Nivelfuria": 0,
-            "Pociondevida": 18
-        },
-        "Datos1": {
-            "Name": "Lissandra",
-            "Region": "Freljord",
-            "Tipoclase": "Mago"
+            "Tipoclase": "Luchador",
+            "Frase": "CONGELATE!!!"
         }
     },
     {
         "Caracteristicas1": {
             "Velocidad": 8,
             "Destreza": 6,
-            "Fuerza": 1,
-            "Armadura": 9,
+            "Fuerza": 7,
+            "Armadura": 6,
             "Salud": 100,
             "Nivelfuria": 0,
             "Pociondevida": 17
         },
         "Datos1": {
+            "Name": "Lissandra",
+            "Region": "Freljord",
+            "Tipoclase": "Mago",
+            "Frase": "CONGELATE Y ROMPE!!!"
+        }
+    },
+    {
+        "Caracteristicas1": {
+            "Velocidad": 1,
+            "Destreza": 7,
+            "Fuerza": 9,
+            "Armadura": 6,
+            "Salud": 100,
+            "Nivelfuria": 0,
+            "Pociondevida": 14
+        },
+        "Datos1": {
             "Name": "RekSai",
             "Region": "Vacio",
-            "Tipoclase": "Luchador"
+            "Tipoclase": "Luchador",
+            "Frase": "*Rugidos y ruidos extranios*"
         }
     }
 ]
