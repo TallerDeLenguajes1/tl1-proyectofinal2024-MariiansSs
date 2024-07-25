@@ -23,12 +23,17 @@ public class Combate
                 mostrarVidaPersonaje(PersonajeElegido);
             }
 
-            if(decisionPersonaje(PersonajeOponente, PersonajeElegido) == 1)
+
+            if(PersonajeOponente.Caracteristicas1.Salud > 0 ) // Para no mostrar dos veces la salud si es 0
             {
-                mostrarVidaPersonaje(PersonajeElegido);
-            }else{
-                mostrarVidaOponente(PersonajeOponente);
+                if(decisionPersonaje(PersonajeOponente, PersonajeElegido) == 1)
+                {
+                     mostrarVidaPersonaje(PersonajeElegido);
+                }else{
+                    mostrarVidaOponente(PersonajeOponente);
+                }
             }
+            
 
 
             if (PersonajeElegido.Caracteristicas1.Salud <= 0)
@@ -76,7 +81,7 @@ public class Combate
         {
             Defensor.Caracteristicas1.Salud = 0;
         }
-        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad} Y DAÑO DE {danioProvocado}");
+        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
         Console.WriteLine("");
 
         Thread.Sleep(2000);

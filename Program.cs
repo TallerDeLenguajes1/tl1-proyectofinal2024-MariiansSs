@@ -51,12 +51,13 @@ while (bandera != 1)
         personajeElegido = fabricarPersonaje.buscarPersonajes(opcionPersonaje, Personajes);
 
         Console.WriteLine("");
+        //PANEL VISUAL DE PERSONAJE ELEGIDO
         var panelPersonaje = new Panel($"[Black]NOMBRE:[/][Cyan]{personajeElegido.Datos1.Name}[/] [Black]REGION:[/][Cyan]{personajeElegido.Datos1.Region}[/] [Black]CLASE:[/][Cyan]{personajeElegido.Datos1.Tipoclase}[/]");
         panelPersonaje.Header = new PanelHeader("PERSONAJE ELEGIDO");
         panelPersonaje.Border = BoxBorder.Ascii;
         panelPersonaje.BorderColor(Color.Aquamarine1);
         panelPersonaje.Header.Centered();
-        AnsiConsole.Write(panelPersonaje);
+        AnsiConsole.Write(panelPersonaje); //MUESTRO EL PANEL
         Console.WriteLine("");
 
         Personajes.Remove(personajeElegido);
@@ -78,13 +79,13 @@ oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
 Personajes.Remove(oponenteGenerado);
 
 Console.WriteLine("");
-
+//PANEL VISUAL DE OPONENTE GENERADO
 var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
-panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!");
+panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!").Centered();
 panelOponente.Border = BoxBorder.Ascii;
 panelOponente.BorderColor(Color.Red);
 panelOponente.Header.Centered();
-AnsiConsole.Write(panelOponente);
+AnsiConsole.Write(panelOponente); // MUESTRO EL PANEL
 
 Console.WriteLine("");
 
@@ -98,12 +99,16 @@ while (finBatalla == 1 && Personajes.Count > 0)
         Personajes.Remove(oponenteGenerado);
         if(Personajes.Count > 1)
         {
-             Console.WriteLine(@$"¡TU NUEVO OPONENTE HA APARECIDO EN EL CAMPO DE BATALLA!
-Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
+            Console.WriteLine("");
+            panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!");
+            AnsiConsole.Write(panelOponente);   
+            Console.WriteLine("");
         }else
         {
-             Console.WriteLine(@$"¡EL ULTIMO OPONENTE ESTA AQUI! MUCHA SUERTE INVOCADOR
-Nombre:{oponenteGenerado.Datos1.Name} Region:{oponenteGenerado.Datos1.Region} Clase:{oponenteGenerado.Datos1.Tipoclase}");
+             Console.WriteLine("");
+             panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
+             AnsiConsole.Write(panelOponente);
+             Console.WriteLine("");
         }
        
     }
