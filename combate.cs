@@ -69,10 +69,10 @@ public class Combate
         int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
         int efectividad = efectividadRandom.Next(1, 101);
         int defensa = Atacante.Caracteristicas1.Armadura * Atacante.Caracteristicas1.Velocidad;
-        int ajuste = 50;
+        int ajuste = 60;
         int danioProvocado = ((ataque * efectividad) - defensa) / ajuste;
 
-        if (Atacante.Caracteristicas1.Nivelfuria == 5)
+        if (Atacante.Caracteristicas1.Nivelfuria == 3)
         {
             danioProvocado = danioProvocado * 2;
             Console.WriteLine("");
@@ -88,7 +88,7 @@ public class Combate
         {
             Defensor.Caracteristicas1.Salud = 0;
         }
-        Console.WriteLine($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
+        AnsiConsole.Write($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
         Console.WriteLine("");
 
     }

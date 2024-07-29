@@ -5,9 +5,13 @@ using PersonajesSpace;
 
     public class HistorialJson
 {
-    string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
+    string nombreArchivo {get;}
     private HelperDeJson helperArchivos = new HelperDeJson();
 
+    public HistorialJson(string NombreArchivo)
+    {
+        this.nombreArchivo = NombreArchivo;
+    }
     public void GuardarGanador(Personajes ganador, string informacion, string nombreArchivo)
     {
         List<Partida> historial = new List<Partida>();

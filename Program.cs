@@ -4,31 +4,35 @@ using PersonajesJS;
 using combateSpace;
 using Spectre.Console;
 using System.Text;
+using System.Threading;
+using HistorialJsonSpace;
 
 
 string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
-Mensajes narrador = new Mensajes();
-List<Personajes> Personajes = new List<Personajes>();
-Personajes personajeElegido = new Personajes();
-Personajes oponenteGenerado = new Personajes();
-FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes();
+string historialArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
+Mensajes narrador = new Mensajes(); //Mostrar mensajes
+List<Personajes> Personajes = new List<Personajes>(); //Para ir avanzando en el combate y sacando de la lista
+Personajes personajeElegido = new Personajes(); // Personaje jugador
+Personajes oponenteGenerado = new Personajes(); // Personaje oponente
+FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes(); // Para crear Personajes
 PersonajesJson jsonPersonajes = new PersonajesJson(nombreArchivo);
+HistorialJson jsonHistorialCombates = new HistorialJson(historialArchivo); 
 Combate combates = new Combate();
 int opcionPersonaje;
 string caracterOpcionPersonaje;
-int bandera = 0, finBatalla = 1;
+int bandera = 0, finBatalla = 1, volverAjugar = 0;
 
 
 // VERIFICO SI EXISTEN LOS PERSONAJES, SI NO, LOS CREO
 
 if (jsonPersonajes.Existe(nombreArchivo))
 {
-    Personajes = jsonPersonajes.LeerPersonajes(nombreArchivo);
+    Personajes = jsonPersonajes.LeerPersonajes(nombreArchivo); // Lee los Personajes del json y guardo en la lista
 }
 else
 {
-    Personajes = fabricarPersonaje.CrearPersonajes();
-    jsonPersonajes.GuardarPersonajes(Personajes, nombreArchivo);
+    Personajes = fabricarPersonaje.CrearPersonajes(); // Crea los Personajes y los guardo en una lista
+    jsonPersonajes.GuardarPersonajes(Personajes, nombreArchivo); // Guardo los Personajes en el json
 }
 
 // PRESENTACION DEL JUEGO
@@ -38,12 +42,14 @@ narrador.mensajeIntroduccion();
 
 
 // ELEGIENDO PERSONAJE
-narrador.preguntaSobrePersonaje();
-Console.WriteLine("");
-Console.WriteLine("");
-Console.WriteLine("");
-fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
-caracterOpcionPersonaje = Console.ReadLine();
+while(volverAjugar == 0)
+{
+    narrador.preguntaSobrePersonaje();
+    Console.WriteLine("");
+    Console.WriteLine("");
+    Console.WriteLine("");
+    fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
+    caracterOpcionPersonaje = Console.ReadLine();
 while (bandera != 1)
 {
     if (int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
@@ -58,6 +64,7 @@ while (bandera != 1)
         panelPersonaje.BorderColor(Color.Aquamarine1);
         panelPersonaje.Header.Centered();
         AnsiConsole.Write(panelPersonaje); //MUESTRO EL PANEL
+        Thread.Sleep(3000);
         Console.WriteLine("");
 
         Personajes.Remove(personajeElegido);
@@ -86,6 +93,7 @@ panelOponente.Border = BoxBorder.Ascii;
 panelOponente.BorderColor(Color.Red);
 panelOponente.Header.Centered();
 AnsiConsole.Write(panelOponente); // MUESTRO EL PANEL
+Thread.Sleep(3000);
 
 Console.WriteLine("");
 
@@ -116,8 +124,13 @@ while (finBatalla == 1 && Personajes.Count > 0)
 
 if (Personajes.Count == 0)
 {
+    jsonHistorialCombates.GuardarGanador(personajeElegido,"GANADOR",historialArchivo);
     Console.WriteLine("FELICIDADES, ERES EL GANADOR!");
+    AnsiConsole.Write("DESEA VOLVER A JUGAR?");
+    
 }
+}
+
 
 
 

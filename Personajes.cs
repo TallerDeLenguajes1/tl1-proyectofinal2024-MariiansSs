@@ -118,16 +118,16 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10),ER.Next(1,10), ER.Next(1,10), "Garen", "Demacia", "Luchador","JUUSTIICIAAAA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lux", "Demacia", "Mago","INCANDESCENCIA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lucian", "Demacia", "Tirador","NO HABRA PERDON!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Darius", "Noxus", "Luchador","NO PUEDES ESCAPAR!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Samira", "Noxus", "Tirador","VAMOS, VAMOS, VAMOS!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Swain", "Noxus", "Mago","EL PODER DEL IMPERIO!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Ashe", "Freljord", "Tirador","FUEGO A DISCRECION!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Sejuani", "Freljord", "Luchador","CONGELATE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "Lissandra", "Freljord", "Mago","CONGELATE Y ROMPE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), ER.Next(1,10), "RekSai", "Vacio", "Luchador","*Rugidos y ruidos extranios*"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11),ER.Next(1,11), ER.Next(1,11), "Garen", "Demacia", "Luchador","JUUSTIICIAAAA!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lux", "Demacia", "Mago","INCANDESCENCIA!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lucian", "Demacia", "Tirador","NO HABRA PERDON!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Darius", "Noxus", "Luchador","NO PUEDES ESCAPAR!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Samira", "Noxus", "Tirador","VAMOS, VAMOS, VAMOS!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Swain", "Noxus", "Mago","EL PODER DEL IMPERIO!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Ashe", "Freljord", "Tirador","FUEGO A DISCRECION!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Sejuani", "Freljord", "Luchador","CONGELATE!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lissandra", "Freljord", "Mago","CONGELATE Y ROMPE!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "RekSai", "Vacio", "Luchador","*Rugidos y ruidos extranios*"));
 
         return listaPersonajes;
     }
@@ -168,7 +168,7 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        var tabla = new Table().Title("[Blue]PERSONAJES[/]"); // CONSULTAR COMO ACOMODAR
+        var tabla = new Table().Title("[Blue]PERSONAJES[/]"); 
         tabla.AddColumn("[Black]ID[/]");  
         tabla.AddColumn("[Black]NOMBRE[/]");
         tabla.AddColumn("[Black]REGION[/]");  // Agrego columnas a la tabla
