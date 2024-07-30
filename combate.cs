@@ -52,9 +52,6 @@ public class Combate
                 AnsiConsole.Markup($"[Cyan]{PersonajeOponente.Datos1.Name} ha sido derrotado.[/]");
                 Console.WriteLine("");
                 Thread.Sleep(3000);
-                AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
-                Console.WriteLine("");
-                Thread.Sleep(3000);
                 PersonajeElegido.Caracteristicas1.Salud = 100;
                 ganador = 1;
             }

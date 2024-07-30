@@ -103,6 +103,9 @@ while (finBatalla == 1 && Personajes.Count > 0)
         Personajes.Remove(oponenteGenerado);
         if(Personajes.Count > 1)
         {
+            AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
+            Thread.Sleep(3000);
+            Console.WriteLine("");
             Console.WriteLine("");
             panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
             panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!").Centered();
@@ -115,6 +118,9 @@ while (finBatalla == 1 && Personajes.Count > 0)
         }else
          if(Personajes.Count == 1)
          {
+             AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
+             Thread.Sleep(3000);
+             Console.WriteLine("");
              Console.WriteLine("");
              panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
              panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
@@ -126,6 +132,9 @@ while (finBatalla == 1 && Personajes.Count > 0)
              Console.WriteLine("");
          }else
          {
+            AnsiConsole.Markup("[Cyan]Felicidades Invocador, no queda mas nadie en el campo de batalla![/]");
+            Thread.Sleep(3000);
+            Console.WriteLine("");
             jsonHistorialCombates.GuardarGanador(personajeElegido,"GANADOR",historialArchivo);
             Console.WriteLine("FELICIDADES, ERES EL GANADOR!");
          }
