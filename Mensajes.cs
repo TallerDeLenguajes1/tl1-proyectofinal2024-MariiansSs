@@ -82,7 +82,7 @@ public class mostrarPanel
         this.personaje = Personaje;
     }
 
-    public void mostrar1(Personajes Personaje)
+    public void mostrarOponente1(Personajes Personaje)
     {
         Console.WriteLine("");
         var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
@@ -93,7 +93,7 @@ public class mostrarPanel
         AnsiConsole.Write(panelOponente);
     }
 
-    public void mostrar2(Personajes Personaje)
+    public void mostrarOponente2(Personajes Personaje)
     {
         Console.WriteLine("");
         var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
@@ -104,7 +104,7 @@ public class mostrarPanel
         AnsiConsole.Write(panelOponente);
     }
 
-    public void mostrar3(Personajes Personaje)
+    public void mostrarOponente3(Personajes Personaje)
     {
         Console.WriteLine("");
         var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
