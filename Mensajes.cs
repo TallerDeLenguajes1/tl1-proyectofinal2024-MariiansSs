@@ -6,8 +6,8 @@ public class Mensajes
 {
     public void Bienvenida()
     {
-    Console.WriteLine("");
-     AnsiConsole.Markup(@"[Black]
+        Console.WriteLine("");
+        AnsiConsole.Markup(@"[Black]
 ██████╗░██╗███████╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗██╗██████╗░░█████╗░  ░█████╗░  ██╗░░░░░░█████╗░
 ██╔══██╗██║██╔════╝████╗░██║██║░░░██║██╔════╝████╗░██║██║██╔══██╗██╔══██╗  ██╔══██╗  ██║░░░░░██╔══██╗
 ██████╦╝██║█████╗░░██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║██║██║░░██║██║░░██║  ███████║  ██║░░░░░███████║
@@ -29,10 +29,10 @@ public class Mensajes
 ██║██║░╚███║░░╚██╔╝░░╚█████╔╝╚█████╔╝██║░░██║██████╔╝╚█████╔╝██║░░██║
 ╚═╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░░╚════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝[/]");
 
-Console.WriteLine("");
+        Console.WriteLine("");
 
-    
-    Thread.Sleep(3000); // Retraso de 3 segundos
+
+        Thread.Sleep(3000); // Retraso de 3 segundos
     }
 
     public void mensajeIntroduccion()
@@ -55,14 +55,14 @@ La batalla por la supremacia individual en la Grieta del Invocador
 comienza ahora. ¡Que los mejores invocadores se enfrenten y que la 
 victoria corone al mas digno![/][/]
 ");
-Console.WriteLine("");
- Thread.Sleep(5000);
+        Console.WriteLine("");
+        Thread.Sleep(5000);
     }
 
     public void preguntaSobrePersonaje()
     {
         Console.WriteLine("");
-        AnsiConsole.Markup("[italic][Gray]Invocador, ¿que campeon elegiras para enfrentarte en la Grieta del Invocador? introduce el numero correspondiente a tu eleccion:[/][/]"); 
+        AnsiConsole.Markup("[italic][Gray]Invocador, ¿que campeon elegiras para enfrentarte en la Grieta del Invocador? introduce el numero correspondiente a tu eleccion:[/][/]");
     }
 
     public void errorPersonaje()
@@ -71,9 +71,48 @@ Console.WriteLine("");
         AnsiConsole.Markup(@"[Red]Lo siento invocador, ese personaje no se encuentra disponible![/]");
         Console.WriteLine("");
     }
+}
 
-    
-    
+public class mostrarPanel
+{
+    private Personajes personaje;
 
+    public mostrarPanel(Personajes Personaje)
+    {
+        this.personaje = Personaje;
+    }
+
+    public void mostrar1(Personajes Personaje)
+    {
+        Console.WriteLine("");
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!").Centered();
+        panelOponente.Border = BoxBorder.Ascii;
+        panelOponente.BorderColor(Color.Red);
+        panelOponente.Header.Centered();
+        AnsiConsole.Write(panelOponente);
+    }
+
+    public void mostrar2(Personajes Personaje)
+    {
+        Console.WriteLine("");
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!").Centered();
+        panelOponente.Border = BoxBorder.Ascii;
+        panelOponente.BorderColor(Color.Red);
+        panelOponente.Header.Centered();
+        AnsiConsole.Write(panelOponente);
+    }
+
+    public void mostrar3(Personajes Personaje)
+    {
+        Console.WriteLine("");
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
+        panelOponente.Border = BoxBorder.Ascii;
+        panelOponente.BorderColor(Color.Red);
+        panelOponente.Header.Centered();
+        AnsiConsole.Write(panelOponente);
+    }
 }
 

@@ -80,17 +80,12 @@ while (bandera != 1)
 //GENERANDO OPONENTE
 oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
 Personajes.Remove(oponenteGenerado);
-
 Console.WriteLine("");
-//PANEL VISUAL DE OPONENTE GENERADO
-var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
-panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!").Centered();
-panelOponente.Border = BoxBorder.Ascii;
-panelOponente.BorderColor(Color.Red);
-panelOponente.Header.Centered();
-AnsiConsole.Write(panelOponente); // MUESTRO EL PANEL
-Thread.Sleep(3000);
 
+//PANEL VISUAL DE OPONENTE GENERADO
+mostrarPanel oponente = new mostrarPanel(oponenteGenerado);
+oponente.mostrar1(oponenteGenerado);
+Thread.Sleep(3000);
 Console.WriteLine("");
 
 //COMBATE
@@ -106,13 +101,7 @@ while (finBatalla == 1 && Personajes.Count > 0)
             AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
             Thread.Sleep(3000);
             Console.WriteLine("");
-            Console.WriteLine("");
-            panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
-            panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!").Centered();
-            panelOponente.Border = BoxBorder.Ascii;
-            panelOponente.BorderColor(Color.Red);
-            panelOponente.Header.Centered();
-            AnsiConsole.Write(panelOponente);  
+            oponente.mostrar2(oponenteGenerado);  
             Thread.Sleep(3000);
             Console.WriteLine("");
         }else
@@ -121,13 +110,7 @@ while (finBatalla == 1 && Personajes.Count > 0)
              AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
              Thread.Sleep(3000);
              Console.WriteLine("");
-             Console.WriteLine("");
-             panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
-             panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
-             panelOponente.Border = BoxBorder.Ascii;
-             panelOponente.BorderColor(Color.Red);
-             panelOponente.Header.Centered();
-             AnsiConsole.Write(panelOponente);
+             oponente.mostrar3(oponenteGenerado);
              Thread.Sleep(3000);
              Console.WriteLine("");
          }else
@@ -136,7 +119,7 @@ while (finBatalla == 1 && Personajes.Count > 0)
             Thread.Sleep(3000);
             Console.WriteLine("");
             jsonHistorialCombates.GuardarGanador(personajeElegido,"GANADOR",historialArchivo);
-            Console.WriteLine("FELICIDADES, ERES EL GANADOR!");
+            AnsiConsole.Markup("[Cyan]FELICIDADES, ERES EL GANADOR![/]");
          }
     }
 }
