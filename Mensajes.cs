@@ -1,5 +1,6 @@
 namespace mensajesSpace;
 using System.Threading; // Para retrasar la muestra de mensajes
+using PersonajesSpace;
 using Spectre.Console; // Mostrar tablas/diseños por consola
 public class Mensajes
 {

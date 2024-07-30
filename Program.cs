@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using HistorialJsonSpace;
 
-
 string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
 string historialArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
 Mensajes narrador = new Mensajes(); //Mostrar mensajes
@@ -20,11 +19,10 @@ HistorialJson jsonHistorialCombates = new HistorialJson(historialArchivo);
 Combate combates = new Combate();
 int opcionPersonaje;
 string caracterOpcionPersonaje;
-int bandera = 0, finBatalla = 1, volverAjugar = 0;
+int bandera = 0, finBatalla = 1;
 
 
 // VERIFICO SI EXISTEN LOS PERSONAJES, SI NO, LOS CREO
-
 if (jsonPersonajes.Existe(nombreArchivo))
 {
     Personajes = jsonPersonajes.LeerPersonajes(nombreArchivo); // Lee los Personajes del json y guardo en la lista
@@ -35,21 +33,19 @@ else
     jsonPersonajes.GuardarPersonajes(Personajes, nombreArchivo); // Guardo los Personajes en el json
 }
 
+
 // PRESENTACION DEL JUEGO
 narrador.Bienvenida();
 narrador.mensajeIntroduccion();
 
 
-
 // ELEGIENDO PERSONAJE
-while(volverAjugar == 0)
-{
-    narrador.preguntaSobrePersonaje();
-    Console.WriteLine("");
-    Console.WriteLine("");
-    Console.WriteLine("");
-    fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
-    caracterOpcionPersonaje = Console.ReadLine();
+narrador.preguntaSobrePersonaje();
+Console.WriteLine("");
+Console.WriteLine("");
+Console.WriteLine("");
+fabricarPersonaje.mostrarPersonajeAElegir(Personajes); 
+caracterOpcionPersonaje = Console.ReadLine();
 while (bandera != 1)
 {
     if (int.TryParse(caracterOpcionPersonaje, out opcionPersonaje))
@@ -108,28 +104,36 @@ while (finBatalla == 1 && Personajes.Count > 0)
         if(Personajes.Count > 1)
         {
             Console.WriteLine("");
-            panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!");
-            AnsiConsole.Write(panelOponente);   
+            panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
+            panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!").Centered();
+            panelOponente.Border = BoxBorder.Ascii;
+            panelOponente.BorderColor(Color.Red);
+            panelOponente.Header.Centered();
+            AnsiConsole.Write(panelOponente);  
+            Thread.Sleep(3000);
             Console.WriteLine("");
         }else
-        {
+         if(Personajes.Count == 1)
+         {
              Console.WriteLine("");
+             panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{oponenteGenerado.Datos1.Name}[/] [Black]REGION:[/][Red]{oponenteGenerado.Datos1.Region}[/] [Black]CLASE:[/][Red]{oponenteGenerado.Datos1.Tipoclase}[/]");
              panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
+             panelOponente.Border = BoxBorder.Ascii;
+             panelOponente.BorderColor(Color.Red);
+             panelOponente.Header.Centered();
              AnsiConsole.Write(panelOponente);
+             Thread.Sleep(3000);
              Console.WriteLine("");
-        }
-       
+         }else
+         {
+            jsonHistorialCombates.GuardarGanador(personajeElegido,"GANADOR",historialArchivo);
+            Console.WriteLine("FELICIDADES, ERES EL GANADOR!");
+         }
     }
 }
 
-if (Personajes.Count == 0)
-{
-    jsonHistorialCombates.GuardarGanador(personajeElegido,"GANADOR",historialArchivo);
-    Console.WriteLine("FELICIDADES, ERES EL GANADOR!");
-    AnsiConsole.Write("DESEA VOLVER A JUGAR?");
-    
-}
-}
+
+
 
 
 
