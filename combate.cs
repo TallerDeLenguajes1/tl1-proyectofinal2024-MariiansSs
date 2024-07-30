@@ -2,6 +2,7 @@ namespace combateSpace;
 using PersonajesSpace;
 using Spectre.Console;
 using System.Threading; // Para retrasar la muestra de mensajes
+using HistorialJsonSpace;
 
 
 public class Combate
@@ -44,6 +45,7 @@ public class Combate
                 AnsiConsole.Markup("[Red]FIN DEL JUEGO[/]");
                 Thread.Sleep(3000);
                 ganador = 0;
+
             }
 
 
@@ -54,6 +56,7 @@ public class Combate
                 Thread.Sleep(3000);
                 PersonajeElegido.Caracteristicas1.Salud = 100;
                 ganador = 1;
+
             }
         }
         return ganador;

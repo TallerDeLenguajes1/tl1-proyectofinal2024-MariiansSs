@@ -11,6 +11,7 @@ string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-M
 string historialArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
 Mensajes narrador = new Mensajes(); //Mostrar mensajes
 List<Personajes> Personajes = new List<Personajes>(); //Para ir avanzando en el combate y sacando de la lista
+List<Partida> historialPartidas = new List<Partida>();
 Personajes personajeElegido = new Personajes(); // Personaje jugador
 Personajes oponenteGenerado = new Personajes(); // Personaje oponente
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes(); // Para crear Personajes
@@ -96,6 +97,7 @@ while (finBatalla == 1 && Personajes.Count > 0)
     finBatalla = combates.iniciarCombate(personajeElegido, oponenteGenerado);
     if (finBatalla == 1)
     {
+        jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.Datos1.Name} ES EL GANADOR", historialArchivo);
         oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
         Personajes.Remove(oponenteGenerado);
         if(Personajes.Count > 1)
@@ -122,8 +124,24 @@ while (finBatalla == 1 && Personajes.Count > 0)
             Console.WriteLine("");
             AnsiConsole.Markup("[Cyan]FELICIDADES, ERES EL GANADOR![/]");
          }
+    }else
+    {
+        jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.Datos1.Name} TE HA DERROTADO", historialArchivo);
     }
 }
+// Muestro el historial de partidas
+List<Partida> historial = jsonHistorialCombates.LeerGanadores(historialArchivo);
+        {
+            foreach (var partida in historial)
+            {
+                Console.WriteLine("");
+                Console.WriteLine($"Ganador: {partida.Ganador.Datos1.Name}");
+                Console.WriteLine($"Perdedor: {partida.Perdedor.Datos1.Name}");
+                Console.WriteLine($"Información: {partida.Informacion}");
+                Console.WriteLine("-------------------------------------------------");
+            }
+        }
+
 Console.WriteLine("");
 AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
 Console.WriteLine("");
@@ -163,6 +181,8 @@ while(bandera2 != 1)
 }
 
 }
+
+
 
 
 

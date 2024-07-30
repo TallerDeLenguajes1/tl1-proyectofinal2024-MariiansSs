@@ -12,7 +12,7 @@ using PersonajesSpace;
     {
         this.nombreArchivo = NombreArchivo;
     }
-    public void GuardarGanador(Personajes ganador, string informacion, string nombreArchivo)
+    public void GuardarGanador(Personajes ganador, Personajes perdedor, string informacion, string nombreArchivo)
     {
         List<Partida> historial = new List<Partida>();
 
@@ -21,7 +21,7 @@ using PersonajesSpace;
             historial = LeerGanadores(nombreArchivo);
         }
 
-        historial.Add(new Partida { Ganador = ganador, Informacion = informacion });
+        historial.Add(new Partida { Ganador = ganador, Perdedor = perdedor, Informacion = informacion });
         string historialJson = JsonSerializer.Serialize(historial);
         helperArchivos.GuardarPersonajes(nombreArchivo, historialJson);
     }
@@ -54,6 +54,11 @@ using PersonajesSpace;
 
 public class Partida
 {
+    public Partida()
+    {
+
+    }
     public Personajes Ganador { get; set; }
+    public Personajes Perdedor { get; set; }
     public string Informacion { get; set; }
 }
