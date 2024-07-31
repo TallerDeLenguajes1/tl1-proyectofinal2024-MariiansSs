@@ -41,6 +41,12 @@ else
     jsonPersonajes.GuardarPersonajes(Personajes, nombreArchivo); // Guardo los Personajes en el json
 }
 
+// VERIFICO SI EXISTE UN HISTORIAL VIEJO Y LO BORRO
+if(jsonHistorialCombates.Existe(historialArchivo))
+{
+    File.Delete(historialArchivo);
+}
+
 // ELEGIENDO PERSONAJE
 narrador.preguntaSobrePersonaje();
 Thread.Sleep(3000);
@@ -129,18 +135,23 @@ while (finBatalla == 1 && Personajes.Count > 0)
         jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.Datos1.Name} TE HA DERROTADO", historialArchivo);
     }
 }
+
 // Muestro el historial de partidas
+Console.WriteLine("");
 List<Partida> historial = jsonHistorialCombates.LeerGanadores(historialArchivo);
-        {
+int i = 0;
             foreach (var partida in historial)
             {
                 Console.WriteLine("");
-                Console.WriteLine($"Ganador: {partida.Ganador.Datos1.Name}");
-                Console.WriteLine($"Perdedor: {partida.Perdedor.Datos1.Name}");
-                Console.WriteLine($"Información: {partida.Informacion}");
+                var tablaHistorial = new Table().Title($"[RED]COMBATE {i}[/]");
+                tablaHistorial.AddColumn($"{partida.Ganador.Datos1.Name} vs {partida.Perdedor.Datos1.Name}"); 
+                tablaHistorial.AddRow($"{partida.Informacion}");
+                i++;
                 Console.WriteLine("-------------------------------------------------");
+                AnsiConsole.Render(tablaHistorial);
             }
-        }
+            
+        
 
 Console.WriteLine("");
 AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
@@ -154,6 +165,7 @@ while(bandera2 != 1)
         if(seguirJugando == 1)
         {
             AnsiConsole.Markup($"[Red]REINICIANDO...[/]");
+            File.Delete(historialArchivo); // ELIMINO EL HISTORIAL DE LA PARTIDA
             seguirJugando = 0; // Para que siga el juego
             bandera2 = 1; // Para que salga de este ciclo
             bandera = 0; // Para que muestre nuevamente el personaje elegido
