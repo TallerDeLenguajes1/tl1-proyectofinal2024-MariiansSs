@@ -6,6 +6,9 @@ using Spectre.Console;
 using System.Text;
 using System.Threading;
 using HistorialJsonSpace;
+using climaApi;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
 string historialArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
@@ -23,10 +26,35 @@ string caracterOpcionPersonaje, opcionSeguirJugando;
 int bandera = 0,bandera2 = 0, finBatalla = 1, seguirJugando = 0;
 
 
+// CONSUMO DE API
+Root estadoClima = await ObtenerClima();
+
+    static async Task<Root> ObtenerClima()
+{
+    var url = @"http://api.weatherapi.com/v1/forecast.json?key=cd6f9d741b394a52a8d154939243107&q=Argentina&days=1&aqi=no&alerts=no";
+    try
+    {
+        HttpClient cliente = new HttpClient();
+        HttpResponseMessage response = await cliente.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        string responseBody = await response.Content.ReadAsStringAsync();
+        Root clima = JsonSerializer.Deserialize<Root>(responseBody);
+        return clima;
+
+    }
+
+     catch (HttpRequestException e)
+    {
+        Console.WriteLine("Problemas de acceso a la API");
+        Console.WriteLine("Message :{0} ", e.Message);
+        return null;
+    }
+}
+
+
 // PRESENTACION DEL JUEGO
 narrador.Bienvenida();
 narrador.mensajeIntroduccion();
-
 
 while(seguirJugando != 1)
 {
@@ -159,7 +187,7 @@ int i = 1;
         
 
 Console.WriteLine("");
-AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
+AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? [0]=NO , [1]=SI [/]");
 Console.WriteLine("");
 opcionSeguirJugando = Console.ReadLine();
 bandera2 = 0;
