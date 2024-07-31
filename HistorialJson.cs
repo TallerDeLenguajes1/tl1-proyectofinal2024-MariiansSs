@@ -15,7 +15,6 @@ using PersonajesSpace;
     public void GuardarGanador(Personajes ganador, Personajes perdedor, string informacion, string nombreArchivo)
     {
         List<Partida> historial = new List<Partida>();
-
         if (Existe(nombreArchivo))
         {
             historial = LeerGanadores(nombreArchivo);

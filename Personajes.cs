@@ -67,7 +67,7 @@ public class Personajes
             this.armadura = Armadura;
             this.salud = 100;
             this.nivelFuria = 0;
-            this.pocionDeVida = numeroRandom.Next(1, 21);
+            this.pocionDeVida = numeroRandom.Next(1, 81);
         }
     }
 
@@ -118,7 +118,7 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(10,110), ER.Next(10,110),ER.Next(10,110), ER.Next(10,110), "Garen", "Demacia", "Luchador","JUUSTIICIAAAA!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11),ER.Next(1,11), ER.Next(1,11), "Garen", "Demacia", "Luchador","JUUSTIICIAAAA!!!"));
         listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lux", "Demacia", "Mago","INCANDESCENCIA!!!"));
         listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lucian", "Demacia", "Tirador","NO HABRA PERDON!!!"));
         listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Darius", "Noxus", "Luchador","NO PUEDES ESCAPAR!!!"));

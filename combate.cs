@@ -14,7 +14,7 @@ public class Combate
     public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string clima)
     {
         int ganador = 0;
-        
+        const int TIEMPO_ESPERA= 2000;
         while (PersonajeElegido.Caracteristicas1.Salud > 0 && PersonajeOponente.Caracteristicas1.Salud > 0)
         {
             aumentarDanioSegunClima(PersonajeElegido, clima);
@@ -45,9 +45,9 @@ public class Combate
             {
                 AnsiConsole.Markup($"[Red]Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.[/]");
                 Console.WriteLine("");
-                Thread.Sleep(3000);
+                Thread.Sleep(TIEMPO_ESPERA);
                 AnsiConsole.Markup("[Red]FIN DEL JUEGO[/]");
-                Thread.Sleep(3000);
+                Thread.Sleep(TIEMPO_ESPERA);
                 ganador = 0;
 
             }
@@ -57,8 +57,8 @@ public class Combate
             {
                 AnsiConsole.Markup($"[Cyan]{PersonajeOponente.Datos1.Name} ha sido derrotado.[/]");
                 Console.WriteLine("");
-                Thread.Sleep(3000);
-                PersonajeElegido.Caracteristicas1.Salud = 100;
+                Thread.Sleep(TIEMPO_ESPERA);
+                PersonajeElegido.Caracteristicas1.Salud += 100;
                 ganador = 1;
 
             }
@@ -66,9 +66,10 @@ public class Combate
         return ganador;
     }
 
+    //Clase Personaje
     public void atacar(Personajes Atacante, Personajes Defensor)
     {
-        
+        const int TIEMPO_ESPERA = 2000;
         Random efectividadRandom = new Random();
         int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
         int efectividad = efectividadRandom.Next(1, 101);
@@ -96,6 +97,8 @@ public class Combate
         Console.WriteLine("");
 
     }
+
+    //Clase Personaje
     public void tomarPocion(Personajes Personaje)
     {
         Personaje.Caracteristicas1.Salud += Personaje.Caracteristicas1.Pociondevida;
@@ -112,6 +115,7 @@ public class Combate
     
     }
 
+    //Clase Personaje
     public int decisionPersonaje(Personajes PersonajeElegido, Personajes PersonajeOponente)
     {
         int decision = 0;
@@ -140,8 +144,10 @@ public class Combate
         return decision;
     }
 
+    //Clase Personaje
     public void mostrarVidaPersonaje(Personajes PersonajeElegido)
     {
+        int TIEMPO_ESPERA_ESPERA = 2000;
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeElegido.Caracteristicas1.Salud, anchoMinimo);
 
@@ -152,11 +158,12 @@ public class Combate
         .AddItem($"{PersonajeElegido.Datos1.Name}", PersonajeElegido.Caracteristicas1.Salud, Color.Cyan1));
         Console.WriteLine("");
 
-        Thread.Sleep(2000);
+        Thread.Sleep(TIEMPO_ESPERA_ESPERA);
     }
 
     public void mostrarVidaOponente(Personajes PersonajeOponente)
     {
+        const int TIEMPO_ESPERA = 2000;
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeOponente.Caracteristicas1.Salud, anchoMinimo);
 
@@ -167,7 +174,7 @@ public class Combate
         .AddItem($"{PersonajeOponente.Datos1.Name}", PersonajeOponente.Caracteristicas1.Salud, Color.Red));
         Console.WriteLine("");
 
-        Thread.Sleep(2000);
+        Thread.Sleep(TIEMPO_ESPERA);
     }
 
     public void aumentarDanioSegunClima(Personajes Personaje, string estadoClima)

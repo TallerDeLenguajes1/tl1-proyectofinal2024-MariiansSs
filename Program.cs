@@ -23,7 +23,8 @@ HistorialJson jsonHistorialCombates = new HistorialJson(historialArchivo);
 Combate combates = new Combate();
 int opcionPersonaje;
 string caracterOpcionPersonaje, opcionSeguirJugando;
-int bandera = 0,bandera2 = 0, finBatalla = 1, seguirJugando = 0;
+int bandera = 0,bandera2 = 0, ganaLocal = 1, seguirJugando = 0;
+const int TIEMPO_ESPERA = 2000;
 
 
 // CONSUMO DE API
@@ -77,7 +78,7 @@ if(jsonHistorialCombates.Existe(historialArchivo))
 
 // ELEGIENDO PERSONAJE
 narrador.preguntaSobrePersonaje();
-Thread.Sleep(3000);
+Thread.Sleep(TIEMPO_ESPERA);
 Console.WriteLine("");
 Console.WriteLine("");
 Console.WriteLine("");
@@ -97,7 +98,7 @@ while (bandera != 1)
         panelPersonaje.BorderColor(Color.Aquamarine1);
         panelPersonaje.Header.Centered();
         AnsiConsole.Write(panelPersonaje); //MUESTRO EL PANEL
-        Thread.Sleep(3000);
+        Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
 
         Personajes.Remove(personajeElegido);
@@ -122,54 +123,62 @@ Console.WriteLine("");
 //PANEL VISUAL DE OPONENTE GENERADO
 mostrarPanel paneles = new mostrarPanel(oponenteGenerado);
 paneles.mostrarOponente1(oponenteGenerado);
-Thread.Sleep(3000);
+Thread.Sleep(TIEMPO_ESPERA);
 Console.WriteLine("");
 
 
 //COMBATE
-while (finBatalla == 1 && Personajes.Count > 0)
+while (ganaLocal == 1 && Personajes.Count != 0)
 {
-    finBatalla = combates.iniciarCombate(personajeElegido, oponenteGenerado,estadoClima.Current.Condition.Text);
-    if (finBatalla == 1)
-    {
-        jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.Datos1.Name} ES EL GANADOR", historialArchivo);
+    int combateActual = combates.iniciarCombate(personajeElegido, oponenteGenerado,estadoClima.Current.Condition.Text);
+    
+    if (combateActual == 1){ // si gano, guardo gadaor
+        jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.Datos1.Name} ES EL GANADOR", historialArchivo); // guardo ganador
+
         oponenteGenerado = fabricarPersonaje.generarOponente(Personajes);
-        Personajes.Remove(oponenteGenerado);
         if(Personajes.Count > 1)
-        {
+        {   
             AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
-            Thread.Sleep(3000);
+            Thread.Sleep(TIEMPO_ESPERA);
             Console.WriteLine("");
-            paneles.mostrarOponente2(oponenteGenerado);  
-            Thread.Sleep(3000);
+                paneles.mostrarOponente2(oponenteGenerado);  // corregir siguiente oponente ** TO DO 
+            Thread.Sleep(TIEMPO_ESPERA);
             Console.WriteLine("");
-        }else
-         if(Personajes.Count == 1)
-         {
-             AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
-             Thread.Sleep(3000);
-             Console.WriteLine("");
-             paneles.mostrarOponente3(oponenteGenerado);
-             Thread.Sleep(3000);
-             Console.WriteLine("");
-         }else
-         {
+        }
+        if(Personajes.Count == 1){
+            AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
+            Thread.Sleep(TIEMPO_ESPERA);
+            Console.WriteLine("");
+            paneles.mostrarOponente3(oponenteGenerado);
+            Thread.Sleep(TIEMPO_ESPERA);
+            Console.WriteLine("");
+
+            combateActual = combates.iniciarCombate(personajeElegido, oponenteGenerado,estadoClima.Current.Condition.Text);
+            if(combateActual==1){
+                jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.Datos1.Name} ES EL GANADOR", historialArchivo); // guardo ganador
+            }else{
+                jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.Datos1.Name} TE HA DERROTADO", historialArchivo); // guardo ganador 
+            }
+        }
+
+    }else{ // si pierdo guardo como perdedor
+        jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.Datos1.Name} TE HA DERROTADO", historialArchivo); // guardo ganador
+    }
+    ganaLocal = combateActual;
+    Personajes.Remove(oponenteGenerado);
+}
+if(ganaLocal==1){
             AnsiConsole.Markup("[Cyan]Felicidades Invocador, no queda mas nadie en el campo de batalla![/]");
-            Thread.Sleep(3000);
+            Thread.Sleep(TIEMPO_ESPERA);
             Console.WriteLine("");
             AnsiConsole.Markup("[Cyan]FELICIDADES, ERES EL GANADOR![/]");
-         }
-    }else
-    {
-        jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.Datos1.Name} TE HA DERROTADO", historialArchivo);
-    }
 }
 
 // Muestro el historial de partidas
 Console.WriteLine("");
 Console.WriteLine("");
 AnsiConsole.Markup("[RED]HISTORIAL DE COMBATES[/]");
-Thread.Sleep(2000);
+Thread.Sleep(TIEMPO_ESPERA);
 Console.WriteLine("");
 List<Partida> historial = jsonHistorialCombates.LeerGanadores(historialArchivo);
 int i = 1;
@@ -182,13 +191,13 @@ int i = 1;
                 tablaHistorial.AddRow($"[BLACK]{partida.Informacion}[/]");
                 i++;
                 AnsiConsole.Render(tablaHistorial);
-                Thread.Sleep(2000);
+                Thread.Sleep(TIEMPO_ESPERA);
             }
             
         
 
 Console.WriteLine("");
-AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? [0]=NO , [1]=SI [/]");
+AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? 0=NO , 1=SI [/]");
 Console.WriteLine("");
 opcionSeguirJugando = Console.ReadLine();
 bandera2 = 0;
@@ -203,7 +212,7 @@ while(bandera2 != 1)
             seguirJugando = 0; // Para que siga el juego
             bandera2 = 1; // Para que salga de este ciclo
             bandera = 0; // Para que muestre nuevamente el personaje elegido
-            finBatalla = 1; // Para que vuelvan a empezar los combates
+            ganaLocal = 1; // Para que vuelvan a empezar los combates
         }else
         {
             if(seguirJugando == 0)
