@@ -138,17 +138,22 @@ while (finBatalla == 1 && Personajes.Count > 0)
 
 // Muestro el historial de partidas
 Console.WriteLine("");
+Console.WriteLine("");
+AnsiConsole.Markup("[RED]HISTORIAL DE COMBATES[/]");
+Thread.Sleep(2000);
+Console.WriteLine("");
 List<Partida> historial = jsonHistorialCombates.LeerGanadores(historialArchivo);
-int i = 0;
+int i = 1;
             foreach (var partida in historial)
             {
                 Console.WriteLine("");
-                var tablaHistorial = new Table().Title($"[RED]COMBATE {i}[/]");
-                tablaHistorial.AddColumn($"{partida.Ganador.Datos1.Name} vs {partida.Perdedor.Datos1.Name}"); 
-                tablaHistorial.AddRow($"{partida.Informacion}");
+                var tablaHistorial = new Table().Title($"[Blue]COMBATE {i}[/]");
+                tablaHistorial.Border(TableBorder.Ascii2).BorderColor(Color.DarkGoldenrod);
+                tablaHistorial.AddColumn($"[CYAN]{partida.Ganador.Datos1.Name}[/] vs [RED]{partida.Perdedor.Datos1.Name}[/]"); 
+                tablaHistorial.AddRow($"[BLACK]{partida.Informacion}[/]");
                 i++;
-                Console.WriteLine("-------------------------------------------------");
                 AnsiConsole.Render(tablaHistorial);
+                Thread.Sleep(2000);
             }
             
         
@@ -186,7 +191,9 @@ while(bandera2 != 1)
         }
     }else
     {
+        Console.WriteLine("");
         AnsiConsole.Markup($"[Red]INVOCADOR, nuestro sistema no conoce esa decision![/]");
+        Console.WriteLine("");
         AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
         opcionSeguirJugando = Console.ReadLine();
     }
