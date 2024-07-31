@@ -11,11 +11,15 @@ public class Combate
 
     private Personajes PersonajeOponente;
 
-    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente)
+    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string clima)
     {
         int ganador = 0;
+        
         while (PersonajeElegido.Caracteristicas1.Salud > 0 && PersonajeOponente.Caracteristicas1.Salud > 0)
         {
+            aumentarDanioSegunClima(PersonajeElegido, clima);
+            aumentarDanioSegunClima(PersonajeOponente, clima);
+
             //REVISAR PORCENTAJE DE VIDA
             if(decisionPersonaje(PersonajeElegido, PersonajeOponente) == 1)
             {
@@ -164,6 +168,54 @@ public class Combate
         Console.WriteLine("");
 
         Thread.Sleep(2000);
+    }
+
+    public void aumentarDanioSegunClima(Personajes Personaje, string estadoClima)
+    {
+        if(estadoClima == "Sunny")
+        {
+            if(Personaje.Datos1.Region == "Demacia")
+            {
+                Personaje.Caracteristicas1.Fuerza++;
+                if(Personaje.Caracteristicas1.Fuerza == 10)
+                {
+                    Personaje.Caracteristicas1.Fuerza = 10;
+                }
+            }
+        }
+        if(estadoClima == "Cloudy")
+        {
+            if(Personaje.Datos1.Region == "Noxus")
+            {
+                Personaje.Caracteristicas1.Fuerza++;
+                if(Personaje.Caracteristicas1.Fuerza == 10)
+                {
+                    Personaje.Caracteristicas1.Fuerza = 10;
+                }
+            }
+        }
+        if(estadoClima == "Rain")
+        {
+            if(Personaje.Datos1.Region == "Freljord")
+            {
+                Personaje.Caracteristicas1.Fuerza++;
+                if(Personaje.Caracteristicas1.Fuerza == 10)
+                {
+                    Personaje.Caracteristicas1.Fuerza = 10;
+                }
+            }
+        }
+        if(estadoClima == "Thunderstorm")
+        {
+            if(Personaje.Datos1.Region == "Vacio")
+            {
+                Personaje.Caracteristicas1.Fuerza++;
+                if(Personaje.Caracteristicas1.Fuerza == 10)
+                {
+                    Personaje.Caracteristicas1.Fuerza = 10;
+                }
+            }
+        }
     }
 
 }

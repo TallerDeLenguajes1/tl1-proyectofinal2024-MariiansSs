@@ -125,10 +125,11 @@ paneles.mostrarOponente1(oponenteGenerado);
 Thread.Sleep(3000);
 Console.WriteLine("");
 
+
 //COMBATE
 while (finBatalla == 1 && Personajes.Count > 0)
 {
-    finBatalla = combates.iniciarCombate(personajeElegido, oponenteGenerado);
+    finBatalla = combates.iniciarCombate(personajeElegido, oponenteGenerado,estadoClima.Current.Condition.Text);
     if (finBatalla == 1)
     {
         jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.Datos1.Name} ES EL GANADOR", historialArchivo);
