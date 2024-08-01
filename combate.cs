@@ -11,39 +11,38 @@ public class Combate
 
     private Personajes PersonajeOponente;
 
-    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string clima)
+    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string estadoClima)
     {
+        const int TIEMPO_ESPERA = 1500;
         int ganador = 0;
-        const int TIEMPO_ESPERA= 2000;
-        while (PersonajeElegido.Caracteristicas1.Salud > 0 && PersonajeOponente.Caracteristicas1.Salud > 0)
+        while (PersonajeElegido.getCaracteristicas.Salud > 0 && PersonajeOponente.getCaracteristicas.Salud > 0)
         {
-            aumentarDanioSegunClima(PersonajeElegido, clima);
-            aumentarDanioSegunClima(PersonajeOponente, clima);
+            aumentarDanioSegunClima(PersonajeElegido, estadoClima);
+            aumentarDanioSegunClima(PersonajeOponente, estadoClima);
 
-            //REVISAR PORCENTAJE DE VIDA
-            if(decisionPersonaje(PersonajeElegido, PersonajeOponente) == 1)
+            if (decisionPersonaje(PersonajeElegido, PersonajeOponente) == 1)
             {
                 mostrarVidaOponente(PersonajeOponente);
-            }else{
+            }
+            else
+            {
                 mostrarVidaPersonaje(PersonajeElegido);
             }
 
-
-            if(PersonajeOponente.Caracteristicas1.Salud > 0 ) // Para no mostrar dos veces la salud si es 0
+            if (PersonajeOponente.getCaracteristicas.Salud > 0) // Para no mostrar dos veces la salud si es 0
             {
-                if(decisionPersonaje(PersonajeOponente, PersonajeElegido) == 1)
+                if (decisionPersonaje(PersonajeOponente, PersonajeElegido) == 1)
                 {
-                     mostrarVidaPersonaje(PersonajeElegido);
-                }else{
+                    mostrarVidaPersonaje(PersonajeElegido);
+                }
+                else
+                {
                     mostrarVidaOponente(PersonajeOponente);
                 }
             }
-            
-
-
-            if (PersonajeElegido.Caracteristicas1.Salud <= 0)
+            if (PersonajeElegido.getCaracteristicas.Salud <= 0)
             {
-                AnsiConsole.Markup($"[Red]Lo siento invocador!, {PersonajeElegido.Datos1.Name} ha sido derrotado.[/]");
+                AnsiConsole.Markup($"[Red]Lo siento invocador!, {PersonajeElegido.getDatos.Name} ha sido derrotado.[/]");
                 Console.WriteLine("");
                 Thread.Sleep(TIEMPO_ESPERA);
                 AnsiConsole.Markup("[Red]FIN DEL JUEGO[/]");
@@ -51,14 +50,11 @@ public class Combate
                 ganador = 0;
 
             }
-
-
-            if (PersonajeOponente.Caracteristicas1.Salud <= 0)
+            if (PersonajeOponente.getCaracteristicas.Salud <= 0)
             {
-                AnsiConsole.Markup($"[Cyan]{PersonajeOponente.Datos1.Name} ha sido derrotado.[/]");
-                Console.WriteLine("");
+                AnsiConsole.Markup($"[Cyan]{PersonajeOponente.getDatos.Name} ha sido derrotado.[/]");
                 Thread.Sleep(TIEMPO_ESPERA);
-                PersonajeElegido.Caracteristicas1.Salud += 100;
+                PersonajeElegido.getCaracteristicas.Salud += 100;
                 ganador = 1;
 
             }
@@ -66,96 +62,48 @@ public class Combate
         return ganador;
     }
 
-    //Clase Personaje
-    public void atacar(Personajes Atacante, Personajes Defensor)
-    {
-        const int TIEMPO_ESPERA = 2000;
-        Random efectividadRandom = new Random();
-        int ataque = Atacante.Caracteristicas1.Destreza * Atacante.Caracteristicas1.Fuerza;
-        int efectividad = efectividadRandom.Next(1, 101);
-        int defensa = Atacante.Caracteristicas1.Armadura * Atacante.Caracteristicas1.Velocidad;
-        int ajuste = 60;
-        int danioProvocado = ((ataque * efectividad) - defensa) / ajuste;
-
-        if (Atacante.Caracteristicas1.Nivelfuria == 3)
-        {
-            danioProvocado = danioProvocado * 2;
-            Console.WriteLine("");
-            AnsiConsole.Markup($"[Red]{Atacante.Datos1.Frase}[/][Black](ESTE PERSONAJE USO SU DEFINITIVA)[/]");
-            Console.WriteLine("");
-            Atacante.Caracteristicas1.Nivelfuria = 0; //Reseteo el nivel de furia para equilibrar el combate
-        }
-
-        Defensor.Caracteristicas1.Salud -= danioProvocado;
-        Defensor.Caracteristicas1.Nivelfuria++;
-
-        if (Defensor.Caracteristicas1.Salud < 0)
-        {
-            Defensor.Caracteristicas1.Salud = 0;
-        }
-        AnsiConsole.Write($@"{Atacante.Datos1.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
-        Console.WriteLine("");
-
-    }
-
-    //Clase Personaje
-    public void tomarPocion(Personajes Personaje)
-    {
-        Personaje.Caracteristicas1.Salud += Personaje.Caracteristicas1.Pociondevida;
-        if (Personaje.Caracteristicas1.Salud > 100)
-        {
-            Personaje.Caracteristicas1.Salud = 100;
-        }
-        
-        Console.WriteLine("");
-        
-        AnsiConsole.Write($"{Personaje.Datos1.Name} SE HA CURADO UN TOTAL DE {Personaje.Caracteristicas1.Pociondevida}%");
-
-        Console.WriteLine("");
-    
-    }
-
-    //Clase Personaje
-    public int decisionPersonaje(Personajes PersonajeElegido, Personajes PersonajeOponente)
+    public int decisionPersonaje(Personajes Atacante, Personajes Defensor)
     {
         int decision = 0;
+        int danio;
         Random decisionAleatoria = new Random();
         int decisionPersonaje;
-        if (PersonajeElegido.Caracteristicas1.Salud > 0)
+        if (Atacante.getCaracteristicas.Salud > 0)
         {
             decisionPersonaje = decisionAleatoria.Next(1, 3);
             if (decisionPersonaje == 1)
             {
-                atacar(PersonajeElegido, PersonajeOponente);
+                danio = Atacante.atacar();
+                Defensor.restarSalud(danio);
                 decision = 1;
             }
             else
-                if (decisionPersonaje == 2 && PersonajeElegido.Caracteristicas1.Salud < 30)
+                if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30)
             {
-                tomarPocion(PersonajeElegido);
+                Atacante.tomarPocion();
                 decision = 2;
             }
             else
             {
-                atacar(PersonajeElegido, PersonajeOponente);
+                danio = Atacante.atacar();
+                Defensor.restarSalud(danio);
                 decision = 1;
             }
         }
         return decision;
     }
 
-    //Clase Personaje
     public void mostrarVidaPersonaje(Personajes PersonajeElegido)
     {
         int TIEMPO_ESPERA_ESPERA = 2000;
         int anchoMinimo = 30;
-        int ancho = Math.Max(PersonajeElegido.Caracteristicas1.Salud, anchoMinimo);
+        int ancho = Math.Max(PersonajeElegido.getCaracteristicas.Salud, anchoMinimo);
 
         AnsiConsole.Write(new BarChart()
         .Width(ancho)
         .Label("Porcentaje de vida")
         .CenterLabel()
-        .AddItem($"{PersonajeElegido.Datos1.Name}", PersonajeElegido.Caracteristicas1.Salud, Color.Cyan1));
+        .AddItem($"{PersonajeElegido.getDatos.Name}", PersonajeElegido.getCaracteristicas.Salud, Color.Cyan1));
         Console.WriteLine("");
 
         Thread.Sleep(TIEMPO_ESPERA_ESPERA);
@@ -165,13 +113,13 @@ public class Combate
     {
         const int TIEMPO_ESPERA = 2000;
         int anchoMinimo = 30;
-        int ancho = Math.Max(PersonajeOponente.Caracteristicas1.Salud, anchoMinimo);
+        int ancho = Math.Max(PersonajeOponente.getCaracteristicas.Salud, anchoMinimo);
 
         AnsiConsole.Write(new BarChart()
         .Width(ancho)
         .Label("Porcentaje de vida")
         .CenterLabel()
-        .AddItem($"{PersonajeOponente.Datos1.Name}", PersonajeOponente.Caracteristicas1.Salud, Color.Red));
+        .AddItem($"{PersonajeOponente.getDatos.Name}", PersonajeOponente.getCaracteristicas.Salud, Color.Red));
         Console.WriteLine("");
 
         Thread.Sleep(TIEMPO_ESPERA);
@@ -179,47 +127,47 @@ public class Combate
 
     public void aumentarDanioSegunClima(Personajes Personaje, string estadoClima)
     {
-        if(estadoClima == "Sunny")
+        if (estadoClima == "Sunny")
         {
-            if(Personaje.Datos1.Region == "Demacia")
+            if (Personaje.getDatos.Region == "Demacia")
             {
-                Personaje.Caracteristicas1.Fuerza++;
-                if(Personaje.Caracteristicas1.Fuerza == 10)
+                Personaje.getCaracteristicas.Fuerza++;
+                if (Personaje.getCaracteristicas.Fuerza == 10)
                 {
-                    Personaje.Caracteristicas1.Fuerza = 10;
+                    Personaje.getCaracteristicas.Fuerza = 10;
                 }
             }
         }
-        if(estadoClima == "Cloudy")
+        if (estadoClima == "Cloudy")
         {
-            if(Personaje.Datos1.Region == "Noxus")
+            if (Personaje.getDatos.Region == "Noxus")
             {
-                Personaje.Caracteristicas1.Fuerza++;
-                if(Personaje.Caracteristicas1.Fuerza == 10)
+                Personaje.getCaracteristicas.Fuerza++;
+                if (Personaje.getCaracteristicas.Fuerza == 10)
                 {
-                    Personaje.Caracteristicas1.Fuerza = 10;
+                    Personaje.getCaracteristicas.Fuerza = 10;
                 }
             }
         }
-        if(estadoClima == "Rain")
+        if (estadoClima == "Rain")
         {
-            if(Personaje.Datos1.Region == "Freljord")
+            if (Personaje.getDatos.Region == "Freljord")
             {
-                Personaje.Caracteristicas1.Fuerza++;
-                if(Personaje.Caracteristicas1.Fuerza == 10)
+                Personaje.getCaracteristicas.Fuerza++;
+                if (Personaje.getCaracteristicas.Fuerza == 10)
                 {
-                    Personaje.Caracteristicas1.Fuerza = 10;
+                    Personaje.getCaracteristicas.Fuerza = 10;
                 }
             }
         }
-        if(estadoClima == "Thunderstorm")
+        if (estadoClima == "Thunderstorm")
         {
-            if(Personaje.Datos1.Region == "Vacio")
+            if (Personaje.getDatos.Region == "Vacio")
             {
-                Personaje.Caracteristicas1.Fuerza++;
-                if(Personaje.Caracteristicas1.Fuerza == 10)
+                Personaje.getCaracteristicas.Fuerza++;
+                if (Personaje.getCaracteristicas.Fuerza == 10)
                 {
-                    Personaje.Caracteristicas1.Fuerza = 10;
+                    Personaje.getCaracteristicas.Fuerza = 10;
                 }
             }
         }

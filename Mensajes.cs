@@ -77,15 +77,23 @@ public class mostrarPanel
 {
     private Personajes personaje;
 
-    public mostrarPanel(Personajes Personaje)
+    
+    public void mostrarPersonajeElegido(Personajes Personaje)
     {
-        this.personaje = Personaje;
+        Console.WriteLine("");
+        var panelPersonaje = new Panel($"[Black]NOMBRE:[/][Cyan]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Cyan]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Cyan]{Personaje.getDatos.Tipoclase}[/]");
+        panelPersonaje.Header = new PanelHeader("PERSONAJE ELEGIDO");
+        panelPersonaje.Border = BoxBorder.Ascii;
+        panelPersonaje.BorderColor(Color.Aquamarine1);
+        panelPersonaje.Header.Centered();
+        AnsiConsole.Write(panelPersonaje); //MUESTRO EL PANEL
+        Thread.Sleep(2000);
+        Console.WriteLine("");
     }
-
     public void mostrarOponente1(Personajes Personaje)
     {
         Console.WriteLine("");
-        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Red]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Red]{Personaje.getDatos.Tipoclase}[/]");
         panelOponente.Header = new PanelHeader("¡TU OPONENTE HA APARECIDO!").Centered();
         panelOponente.Border = BoxBorder.Ascii;
         panelOponente.BorderColor(Color.Red);
@@ -95,8 +103,11 @@ public class mostrarPanel
 
     public void mostrarOponente2(Personajes Personaje)
     {
+        AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
         Console.WriteLine("");
-        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        Console.WriteLine("");
+        Thread.Sleep(2000);
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Red]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Red]{Personaje.getDatos.Tipoclase}[/]");
         panelOponente.Header = new PanelHeader("¡TU NUEVO OPONENTE HA APARECIDO!").Centered();
         panelOponente.Border = BoxBorder.Ascii;
         panelOponente.BorderColor(Color.Red);
@@ -106,13 +117,17 @@ public class mostrarPanel
 
     public void mostrarOponente3(Personajes Personaje)
     {
+        AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
         Console.WriteLine("");
-        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.Datos1.Name}[/] [Black]REGION:[/][Red]{Personaje.Datos1.Region}[/] [Black]CLASE:[/][Red]{Personaje.Datos1.Tipoclase}[/]");
+        Console.WriteLine("");
+        Thread.Sleep(2000);
+        var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Red]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Red]{Personaje.getDatos.Tipoclase}[/]");
         panelOponente.Header = new PanelHeader("¡TU ULTIMO OPONENTE HA APARECIDO!");
         panelOponente.Border = BoxBorder.Ascii;
         panelOponente.BorderColor(Color.Red);
         panelOponente.Header.Centered();
         AnsiConsole.Write(panelOponente);
     }
+
 }
 

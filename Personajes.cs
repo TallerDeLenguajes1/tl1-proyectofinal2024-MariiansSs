@@ -10,8 +10,8 @@ public class Personajes
     
     public Personajes(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase, string frase)
     {
-        this.Caracteristicas1 = new Caracteristicas(velocidad, destreza, fuerza, armadura);
-        this.Datos1 = new Datos(nombre, region, tipoClase,frase);
+        this.getCaracteristicas = new Caracteristicas(velocidad, destreza, fuerza, armadura);
+        this.getDatos = new Datos(nombre, region, tipoClase,frase);
     }
 
     public Personajes()
@@ -20,8 +20,8 @@ public class Personajes
     }
 
     
-    public Caracteristicas Caracteristicas1 { get => caracteristicas; set => caracteristicas = value; }
-    public Datos Datos1 { get => datos; set => datos = value; }
+    public Caracteristicas getCaracteristicas { get => caracteristicas; set => caracteristicas = value; }
+    public Datos getDatos { get => datos; set => datos = value; }
 
     public class Caracteristicas
     {
@@ -103,6 +103,49 @@ public class Personajes
         }
     }
 
+    public int atacar()
+    {
+        Random efectividadRandom = new Random();
+        int ataque = getCaracteristicas.Destreza * getCaracteristicas.Fuerza;
+        int efectividad = efectividadRandom.Next(1, 101);
+        int defensa = getCaracteristicas.Armadura * getCaracteristicas.Velocidad;
+        int ajuste = 55;
+        int danioProvocado = ((ataque * efectividad) - defensa) / ajuste;
+
+        if (getCaracteristicas.Nivelfuria == 3)
+        {
+            danioProvocado = danioProvocado * 2;
+            Console.WriteLine("");
+            AnsiConsole.Markup($"[Red]{getDatos.Frase}[/][Black](ESTE PERSONAJE USO SU DEFINITIVA)[/]");
+            Console.WriteLine("");
+            getCaracteristicas.Nivelfuria = 0; //Reseteo el nivel de furia para equilibrar el combate
+        }
+        AnsiConsole.Write($@"{getDatos.Name} ATACO CON UNA EFECTIVIDAD DE {efectividad}% Y DAÑO DE {danioProvocado}%");
+        Console.WriteLine("");
+        return danioProvocado;
+    }
+
+    public void restarSalud(int danioProvocado)
+    {
+        caracteristicas.Salud -= danioProvocado;
+        caracteristicas.Nivelfuria++;
+        
+    }
+
+    public void tomarPocion()
+    {
+        getCaracteristicas.Salud += getCaracteristicas.Pociondevida;
+        if (getCaracteristicas.Salud > 100)
+        {
+            getCaracteristicas.Salud = 100;
+        }
+
+        Console.WriteLine("");
+        
+        AnsiConsole.Write($"{getDatos.Name} SE HA CURADO UN TOTAL DE {getCaracteristicas.Pociondevida}%");
+
+        Console.WriteLine("");
+    }
 
 }
 
@@ -180,9 +223,9 @@ public class FabricaDePersonajes
             Personajes mostrarPersonaje = listaPersonajes[i];
             tabla.AddRow(
                 i.ToString(), // Índice como texto simple  
-                mostrarPersonaje.Datos1.Name, // Nombre
-                mostrarPersonaje.Datos1.Region, // Región
-                mostrarPersonaje.Datos1.Tipoclase // Clase
+                mostrarPersonaje.getDatos.Name, // Nombre
+                mostrarPersonaje.getDatos.Region, // Región
+                mostrarPersonaje.getDatos.Tipoclase // Clase
             ); // Agrego filas
 
         }
