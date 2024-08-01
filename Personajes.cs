@@ -132,6 +132,11 @@ public class Personajes
 
     }
 
+    public void restaurarSalud()
+    {
+        caracteristicas.Salud = 100;
+    }
+
     public void tomarPocion()
     {
         getCaracteristicas.Salud += getCaracteristicas.Pociondevida;

@@ -54,6 +54,7 @@ public class Combate
             {
                 AnsiConsole.Markup($"[Cyan]{PersonajeOponente.getDatos.Name} ha sido derrotado.[/]");
                 Thread.Sleep(TIEMPO_ESPERA);
+                PersonajeElegido.restaurarSalud();
                 ganador = 1;
 
             }
