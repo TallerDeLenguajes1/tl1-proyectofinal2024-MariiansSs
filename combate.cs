@@ -54,7 +54,6 @@ public class Combate
             {
                 AnsiConsole.Markup($"[Cyan]{PersonajeOponente.getDatos.Name} ha sido derrotado.[/]");
                 Thread.Sleep(TIEMPO_ESPERA);
-                PersonajeElegido.getCaracteristicas.Salud += 100;
                 ganador = 1;
 
             }
@@ -131,44 +130,28 @@ public class Combate
         {
             if (Personaje.getDatos.Region == "Demacia")
             {
-                Personaje.getCaracteristicas.Fuerza++;
-                if (Personaje.getCaracteristicas.Fuerza == 10)
-                {
-                    Personaje.getCaracteristicas.Fuerza = 10;
-                }
+                Personaje.aumentarDanio();
             }
         }
         if (estadoClima == "Cloudy")
         {
             if (Personaje.getDatos.Region == "Noxus")
             {
-                Personaje.getCaracteristicas.Fuerza++;
-                if (Personaje.getCaracteristicas.Fuerza == 10)
-                {
-                    Personaje.getCaracteristicas.Fuerza = 10;
-                }
+                Personaje.aumentarDanio();
             }
         }
         if (estadoClima == "Rain")
         {
             if (Personaje.getDatos.Region == "Freljord")
             {
-                Personaje.getCaracteristicas.Fuerza++;
-                if (Personaje.getCaracteristicas.Fuerza == 10)
-                {
-                    Personaje.getCaracteristicas.Fuerza = 10;
-                }
+                Personaje.aumentarDanio();
             }
         }
         if (estadoClima == "Thunderstorm")
         {
             if (Personaje.getDatos.Region == "Vacio")
             {
-                Personaje.getCaracteristicas.Fuerza++;
-                if (Personaje.getCaracteristicas.Fuerza == 10)
-                {
-                    Personaje.getCaracteristicas.Fuerza = 10;
-                }
+                Personaje.aumentarDanio();
             }
         }
     }

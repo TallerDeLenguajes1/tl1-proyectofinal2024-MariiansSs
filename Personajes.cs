@@ -7,19 +7,19 @@ public class Personajes
 {
     private Caracteristicas caracteristicas;
     private Datos datos;
-    
+
     public Personajes(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase, string frase)
     {
         this.getCaracteristicas = new Caracteristicas(velocidad, destreza, fuerza, armadura);
-        this.getDatos = new Datos(nombre, region, tipoClase,frase);
+        this.getDatos = new Datos(nombre, region, tipoClase, frase);
     }
 
     public Personajes()
     {
-           //Para deserializar
+        //Para deserializar
     }
 
-    
+
     public Caracteristicas getCaracteristicas { get => caracteristicas; set => caracteristicas = value; }
     public Datos getDatos { get => datos; set => datos = value; }
 
@@ -31,10 +31,10 @@ public class Personajes
         private int fuerza;
         private int armadura;
         private int salud;
-        private int nivelFuria; 
+        private int nivelFuria;
         private int pocionDeVida;
 
-        
+
         [JsonPropertyName("Velocidad")]
         public int Velocidad { get => velocidad; }
 
@@ -91,8 +91,8 @@ public class Personajes
         public string Tipoclase { get => tipoClase; }
 
         [JsonPropertyName("Frase")]
-        public string Frase {get => frase;}
-        
+        public string Frase { get => frase; }
+
 
         public Datos(string Name, string Region, string Tipoclase, string Frase)
         {
@@ -129,7 +129,7 @@ public class Personajes
     {
         caracteristicas.Salud -= danioProvocado;
         caracteristicas.Nivelfuria++;
-        
+
     }
 
     public void tomarPocion()
@@ -141,10 +141,19 @@ public class Personajes
         }
 
         Console.WriteLine("");
-        
+
         AnsiConsole.Write($"{getDatos.Name} SE HA CURADO UN TOTAL DE {getCaracteristicas.Pociondevida}%");
 
         Console.WriteLine("");
+    }
+
+    public void aumentarDanio()
+    {
+        getCaracteristicas.Fuerza++;
+        if (getCaracteristicas.Fuerza == 10)
+        {
+            getCaracteristicas.Fuerza = 10;
+        }
     }
 
 }
@@ -161,16 +170,16 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11),ER.Next(1,11), ER.Next(1,11), "Garen", "Demacia", "Luchador","JUUSTIICIAAAA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lux", "Demacia", "Mago","INCANDESCENCIA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lucian", "Demacia", "Tirador","NO HABRA PERDON!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Darius", "Noxus", "Luchador","NO PUEDES ESCAPAR!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Samira", "Noxus", "Tirador","VAMOS, VAMOS, VAMOS!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Swain", "Noxus", "Mago","EL PODER DEL IMPERIO!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Ashe", "Freljord", "Tirador","FUEGO A DISCRECION!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Sejuani", "Freljord", "Luchador","CONGELATE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "Lissandra", "Freljord", "Mago","CONGELATE Y ROMPE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), ER.Next(1,11), "RekSai", "Vacio", "Luchador","*Rugidos y ruidos extranios*"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Garen", "Demacia", "Luchador", "JUUSTIICIAAAA!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lux", "Demacia", "Mago", "INCANDESCENCIA!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lucian", "Demacia", "Tirador", "NO HABRA PERDON!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Darius", "Noxus", "Luchador", "NO PUEDES ESCAPAR!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Samira", "Noxus", "Tirador", "VAMOS, VAMOS, VAMOS!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Swain", "Noxus", "Mago", "EL PODER DEL IMPERIO!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Ashe", "Freljord", "Tirador", "FUEGO A DISCRECION!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Sejuani", "Freljord", "Luchador", "CONGELATE!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lissandra", "Freljord", "Mago", "CONGELATE Y ROMPE!!!"));
+        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "RekSai", "Vacio", "Luchador", "*Rugidos y ruidos extranios*"));
 
         return listaPersonajes;
     }
@@ -193,14 +202,14 @@ public class FabricaDePersonajes
                     AnsiConsole.Markup("[Red]Lo siento!, por ahora no tenemos disponible esa opcion, porfavor, elige nuevamente las anteriormente mencionadas[/]");
                     string nuevaOpcion = Console.ReadLine();
 
-                    if(int.TryParse(nuevaOpcion, out opcion))
+                    if (int.TryParse(nuevaOpcion, out opcion))
                     {
                         break;
                     }
                     else
                     {
-                      Console.WriteLine("[Red]Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti![/]");
-                      opcion = personajeRandom.Next(0,10);
+                        Console.WriteLine("[Red]Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti![/]");
+                        opcion = personajeRandom.Next(0, 10);
                     }
                 }
             }
@@ -211,12 +220,12 @@ public class FabricaDePersonajes
 
     public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
     {
-        var tabla = new Table().Title("[Blue]PERSONAJES[/]"); 
-        tabla.AddColumn("[Black]ID[/]");  
+        var tabla = new Table().Title("[Blue]PERSONAJES[/]");
+        tabla.AddColumn("[Black]ID[/]");
         tabla.AddColumn("[Black]NOMBRE[/]");
         tabla.AddColumn("[Black]REGION[/]");  // Agrego columnas a la tabla
-        tabla.AddColumn("[Black]CLASE[/]"); 
-        
+        tabla.AddColumn("[Black]CLASE[/]");
+
         tabla.Border(TableBorder.Ascii2).BorderColor(Color.Blue);
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
@@ -229,7 +238,7 @@ public class FabricaDePersonajes
             ); // Agrego filas
 
         }
-       
+
         AnsiConsole.Render(tabla); // Mostrar tabla
     }
 
@@ -240,7 +249,7 @@ public class FabricaDePersonajes
 
         return listaPersonajes[oponente];
     }
-    
+
 }
 
 
