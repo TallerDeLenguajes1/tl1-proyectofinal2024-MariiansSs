@@ -161,6 +161,15 @@ public class Personajes
         }
     }
 
+    public void subirFuria()
+    {
+        getCaracteristicas.Nivelfuria++;
+        if(getCaracteristicas.Nivelfuria > 3)
+        {
+            getCaracteristicas.Nivelfuria = 3;
+        }
+        
+    }
 }
 
 public class FabricaDePersonajes

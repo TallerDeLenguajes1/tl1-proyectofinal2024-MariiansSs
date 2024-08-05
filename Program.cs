@@ -10,8 +10,8 @@ using climaApi;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-string nombreArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Personajes.json";
-string historialArchivo = @"C:\TallerPractica\ProyectoFinal\tl1-proyectofinal2024-MariiansSs\Historial.json";
+string nombreArchivo = @"json\Personajes.json";
+string historialArchivo = @"json\Historial.json";
 Mensajes narrador = new Mensajes(); //Mostrar mensajes
 mostrarPanel paneles = new mostrarPanel(); // Mostrar paneles
 List<Personajes> listaPersonajes = new List<Personajes>(); //Para ir avanzando en el combate y sacando de la lista
@@ -29,29 +29,8 @@ const int TIEMPO_ESPERA = 1500;
 
 
 // CONSUMO DE API
-Root estadoClima = await ObtenerClima();
+Root estadoClima = await servicioClima.ObtenerClima(); // OBTENGO EL CLIMA
 
-static async Task<Root> ObtenerClima()
-{
-    var url = @"http://api.weatherapi.com/v1/forecast.json?key=cd6f9d741b394a52a8d154939243107&q=Argentina&days=1&aqi=no&alerts=no";
-    try
-    {
-        HttpClient cliente = new HttpClient();
-        HttpResponseMessage response = await cliente.GetAsync(url);
-        response.EnsureSuccessStatusCode();
-        string responseBody = await response.Content.ReadAsStringAsync();
-        Root clima = JsonSerializer.Deserialize<Root>(responseBody);
-        return clima;
-
-    }
-
-    catch (HttpRequestException e)
-    {
-        Console.WriteLine("Problemas de acceso a la API");
-        Console.WriteLine("Message :{0} ", e.Message);
-        return null;
-    }
-}
 
 
 // PRESENTACION DEL JUEGO

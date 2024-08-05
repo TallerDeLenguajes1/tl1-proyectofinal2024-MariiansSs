@@ -5,15 +5,16 @@ using System.Threading; // Para retrasar la muestra de mensajes
 using HistorialJsonSpace;
 
 
+
 public class Combate
 {
     private Personajes PersonajeElegido;
 
     private Personajes PersonajeOponente;
 
+    const int TIEMPO_ESPERA = 1300;
     public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string estadoClima)
     {
-        const int TIEMPO_ESPERA = 1500;
         int ganador = 0;
         while (PersonajeElegido.getCaracteristicas.Salud > 0 && PersonajeOponente.getCaracteristicas.Salud > 0)
         {
@@ -55,6 +56,7 @@ public class Combate
                 AnsiConsole.Markup($"[Cyan]{PersonajeOponente.getDatos.Name} ha sido derrotado.[/]");
                 Thread.Sleep(TIEMPO_ESPERA);
                 PersonajeElegido.restaurarSalud();
+                PersonajeElegido.subirFuria();
                 ganador = 1;
 
             }
@@ -66,6 +68,7 @@ public class Combate
     {
         int decision = 0;
         int danio;
+        int cantPociones = 2;
         Random decisionAleatoria = new Random();
         int decisionPersonaje;
         if (Atacante.getCaracteristicas.Salud > 0)
@@ -78,9 +81,10 @@ public class Combate
                 decision = 1;
             }
             else
-                if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30)
+                if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30 && cantPociones != 0)
             {
                 Atacante.tomarPocion();
+                cantPociones--; // Solo puede curarse dos veces por combate
                 decision = 2;
             }
             else
@@ -95,7 +99,6 @@ public class Combate
 
     public void mostrarVidaPersonaje(Personajes PersonajeElegido)
     {
-        int TIEMPO_ESPERA_ESPERA = 2000;
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeElegido.getCaracteristicas.Salud, anchoMinimo);
 
@@ -106,12 +109,11 @@ public class Combate
         .AddItem($"{PersonajeElegido.getDatos.Name}", PersonajeElegido.getCaracteristicas.Salud, Color.Cyan1));
         Console.WriteLine("");
 
-        Thread.Sleep(TIEMPO_ESPERA_ESPERA);
+        Thread.Sleep(TIEMPO_ESPERA);
     }
 
     public void mostrarVidaOponente(Personajes PersonajeOponente)
     {
-        const int TIEMPO_ESPERA = 2000;
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeOponente.getCaracteristicas.Salud, anchoMinimo);
 
