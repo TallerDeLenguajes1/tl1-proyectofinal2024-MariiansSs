@@ -8,12 +8,12 @@ using HistorialJsonSpace;
 
 public class Combate
 {
-    private Personajes PersonajeElegido;
+    private Personaje PersonajeElegido;
 
-    private Personajes PersonajeOponente;
+    private Personaje PersonajeOponente;
 
     const int TIEMPO_ESPERA = 1300;
-    public int iniciarCombate(Personajes PersonajeElegido, Personajes PersonajeOponente, string estadoClima)
+    public int iniciarCombate(Personaje PersonajeElegido, Personaje PersonajeOponente, string estadoClima)
     {
         int ganador = 0;
         while (PersonajeElegido.getCaracteristicas.Salud > 0 && PersonajeOponente.getCaracteristicas.Salud > 0)
@@ -64,7 +64,7 @@ public class Combate
         return ganador;
     }
 
-    public int decisionPersonaje(Personajes Atacante, Personajes Defensor)
+    public int decisionPersonaje(Personaje Atacante, Personaje Defensor)
     {
         int decision = 0;
         int danio;
@@ -97,7 +97,7 @@ public class Combate
         return decision;
     }
 
-    public void mostrarVidaPersonaje(Personajes PersonajeElegido)
+    public void mostrarVidaPersonaje(Personaje PersonajeElegido)
     {
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeElegido.getCaracteristicas.Salud, anchoMinimo);
@@ -112,7 +112,7 @@ public class Combate
         Thread.Sleep(TIEMPO_ESPERA);
     }
 
-    public void mostrarVidaOponente(Personajes PersonajeOponente)
+    public void mostrarVidaOponente(Personaje PersonajeOponente)
     {
         int anchoMinimo = 30;
         int ancho = Math.Max(PersonajeOponente.getCaracteristicas.Salud, anchoMinimo);
@@ -127,7 +127,7 @@ public class Combate
         Thread.Sleep(TIEMPO_ESPERA);
     }
 
-    public void aumentarDanioSegunClima(Personajes Personaje, string estadoClima)
+    public void aumentarDanioSegunClima(Personaje Personaje, string estadoClima)
     {
         if (estadoClima == "Sunny")
         {

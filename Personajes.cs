@@ -3,18 +3,18 @@ using System.Text.Json.Serialization;
 using Spectre.Console; // Mostrar tablas/diseños por consola
 
 
-public class Personajes
+public class Personaje
 {
     private Caracteristicas caracteristicas;
     private Datos datos;
 
-    public Personajes(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase, string frase)
+    public Personaje(int velocidad, int destreza, int fuerza, int armadura, string nombre, string region, string tipoClase, string frase)
     {
         this.getCaracteristicas = new Caracteristicas(velocidad, destreza, fuerza, armadura);
         this.getDatos = new Datos(nombre, region, tipoClase, frase);
     }
 
-    public Personajes()
+    public Personaje()
     {
         //Para deserializar
     }
@@ -174,37 +174,37 @@ public class Personajes
 
 public class FabricaDePersonajes
 {
-    private List<Personajes> listaPersonajes;
+    private List<Personaje> listaPersonajes;
 
     public FabricaDePersonajes()
     {
-        listaPersonajes = new List<Personajes>();
+        listaPersonajes = new List<Personaje>();
     }
-    public List<Personajes> CrearPersonajes()
+    public List<Personaje> CrearPersonajes()
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Garen", "Demacia", "Luchador", "JUUSTIICIAAAA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lux", "Demacia", "Mago", "INCANDESCENCIA!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lucian", "Demacia", "Tirador", "NO HABRA PERDON!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Darius", "Noxus", "Luchador", "NO PUEDES ESCAPAR!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Samira", "Noxus", "Tirador", "VAMOS, VAMOS, VAMOS!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Swain", "Noxus", "Mago", "EL PODER DEL IMPERIO!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Ashe", "Freljord", "Tirador", "FUEGO A DISCRECION!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Sejuani", "Freljord", "Luchador", "CONGELATE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lissandra", "Freljord", "Mago", "CONGELATE Y ROMPE!!!"));
-        listaPersonajes.Add(new Personajes(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "RekSai", "Vacio", "Luchador", "*Rugidos y ruidos extranios*"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Garen", "Demacia", "Luchador", "JUUSTIICIAAAA!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lux", "Demacia", "Mago", "INCANDESCENCIA!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lucian", "Demacia", "Tirador", "NO HABRA PERDON!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Darius", "Noxus", "Luchador", "NO PUEDES ESCAPAR!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Samira", "Noxus", "Tirador", "VAMOS, VAMOS, VAMOS!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Swain", "Noxus", "Mago", "EL PODER DEL IMPERIO!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Ashe", "Freljord", "Tirador", "FUEGO A DISCRECION!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Sejuani", "Freljord", "Luchador", "CONGELATE!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lissandra", "Freljord", "Mago", "CONGELATE Y ROMPE!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "RekSai", "Vacio", "Luchador", "*Rugidos y ruidos extranios*"));
 
         return listaPersonajes;
     }
 
-    public Personajes buscarPersonajes(int opcion, List<Personajes> listaPersonajes)
+    public Personaje buscarPersonajes(int opcion, List<Personaje> listaPersonajes)
     {
         Random personajeRandom = new Random();
         int bandera = 0;
         while (bandera == 0)
         {
-            foreach (Personajes personaje in listaPersonajes)
+            foreach (Personaje personaje in listaPersonajes)
             {
                 if (opcion >= 0 && opcion <= 9)
                 {
@@ -232,7 +232,7 @@ public class FabricaDePersonajes
         return listaPersonajes[opcion];
     }
 
-    public void mostrarPersonajeAElegir(List<Personajes> listaPersonajes)
+    public void mostrarPersonajeAElegir(List<Personaje> listaPersonajes)
     {
         var tabla = new Table().Title("[Blue]PERSONAJES[/]");
         tabla.AddColumn("[Black]ID[/]");
@@ -243,7 +243,7 @@ public class FabricaDePersonajes
         tabla.Border(TableBorder.Ascii2).BorderColor(Color.Blue);
         for (int i = 0; i < listaPersonajes.Count; i++)
         {
-            Personajes mostrarPersonaje = listaPersonajes[i];
+            Personaje mostrarPersonaje = listaPersonajes[i];
             tabla.AddRow(
                 i.ToString(), // Índice como texto simple  
                 mostrarPersonaje.getDatos.Name, // Nombre
@@ -256,7 +256,7 @@ public class FabricaDePersonajes
         AnsiConsole.Render(tabla); // Mostrar tabla
     }
 
-    public Personajes generarOponente(List<Personajes> listaPersonajes)
+    public Personaje generarOponente(List<Personaje> listaPersonajes)
     {
         Random oponenteRandom = new Random();
         int oponente = oponenteRandom.Next(listaPersonajes.Count);

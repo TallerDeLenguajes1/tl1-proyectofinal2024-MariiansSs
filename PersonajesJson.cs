@@ -14,7 +14,7 @@ public class PersonajesJson
     {
         this.nombreArchivo = NombreArchivo;
     }
-    public void GuardarPersonajes(List<Personajes> personaje, string NombreArchivo)
+    public void GuardarPersonajes(List<Personaje> personaje, string NombreArchivo)
     {
         //"--Serializando--"
         string personajesJson = JsonSerializer.Serialize(personaje);
@@ -22,12 +22,12 @@ public class PersonajesJson
         helperArchivos.GuardarPersonajes(nombreArchivo, personajesJson);
     }
 
-    public List<Personajes> LeerPersonajes(string NombreArchivo)
+    public List<Personaje> LeerPersonajes(string NombreArchivo)
     {
         //"--Abriendo--"
         string jsonDocument = helperArchivos.AbrirArchivoTexto(NombreArchivo);
         //"--Deserializando--"
-        List<Personajes> listaPersonajes = JsonSerializer.Deserialize<List<Personajes>>(jsonDocument);
+        List<Personaje> listaPersonajes = JsonSerializer.Deserialize<List<Personaje>>(jsonDocument);
         return listaPersonajes;
     }
 

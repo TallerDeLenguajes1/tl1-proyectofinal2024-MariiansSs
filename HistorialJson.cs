@@ -12,7 +12,7 @@ using PersonajesSpace;
     {
         this.nombreArchivo = NombreArchivo;
     }
-    public void GuardarGanador(Personajes ganador, Personajes perdedor, string informacion, string nombreArchivo)
+    public void GuardarGanador(Personaje ganador, Personaje perdedor, string informacion, string nombreArchivo)
     {
         List<Partida> historial = new List<Partida>();
         if (Existe(nombreArchivo))
@@ -57,7 +57,7 @@ public class Partida
     {
 
     }
-    public Personajes Ganador { get; set; }
-    public Personajes Perdedor { get; set; }
+    public Personaje Ganador { get; set; }
+    public Personaje Perdedor { get; set; }
     public string Informacion { get; set; }
 }

@@ -75,10 +75,10 @@ victoria corone al mas digno![/][/]
 
 public class mostrarPanel
 {
-    private Personajes personaje;
+    private Personaje personaje;
 
     
-    public void mostrarPersonajeElegido(Personajes Personaje)
+    public void mostrarPersonajeElegido(Personaje Personaje)
     {
         Console.WriteLine("");
         var panelPersonaje = new Panel($"[Black]NOMBRE:[/][Cyan]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Cyan]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Cyan]{Personaje.getDatos.Tipoclase}[/]");
@@ -90,7 +90,7 @@ public class mostrarPanel
         Thread.Sleep(2000);
         Console.WriteLine("");
     }
-    public void mostrarOponente1(Personajes Personaje)
+    public void mostrarOponente1(Personaje Personaje)
     {
         Console.WriteLine("");
         var panelOponente = new Panel($"[Black]NOMBRE:[/][Red]{Personaje.getDatos.Name}[/] [Black]REGION:[/][Red]{Personaje.getDatos.Region}[/] [Black]CLASE:[/][Red]{Personaje.getDatos.Tipoclase}[/]");
@@ -101,7 +101,7 @@ public class mostrarPanel
         AnsiConsole.Write(panelOponente);
     }
 
-    public void mostrarOponente2(Personajes Personaje)
+    public void mostrarOponente2(Personaje Personaje)
     {
         AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
         Console.WriteLine("");
@@ -115,7 +115,7 @@ public class mostrarPanel
         AnsiConsole.Write(panelOponente);
     }
 
-    public void mostrarOponente3(Personajes Personaje)
+    public void mostrarOponente3(Personaje Personaje)
     {
         AnsiConsole.Markup("[Cyan]Felicidades Invocador, has pasado a la siguiente pelea![/]");
         Console.WriteLine("");
