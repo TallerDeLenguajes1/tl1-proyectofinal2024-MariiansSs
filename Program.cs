@@ -191,6 +191,8 @@ while (seguirJugando != 1)
         Thread.Sleep(TIEMPO_ESPERA);
     }
 
+
+    //MUESTRA DEL RANKING HISTORICO
     Console.WriteLine("");
     AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
     opcionVerGanadores = Console.ReadLine();
@@ -224,24 +226,48 @@ while (seguirJugando != 1)
                 }
                 else
                 {
-                    if (verGanadores == 0)
-                    {
-                        Console.WriteLine("");
-                        AnsiConsole.Markup($"[Red]INVOCADOR, QUIZAS PODRIAS HABER APRENDIDO ALGO DE ELLOS...[/]");
-                        bandera3 = 1;
-                    }
-                    else
-                    {
-                        AnsiConsole.Markup($"[Red]INVOCADOR, hubo un error inesperado, ingresa nuevamente la opcion.[/]");
-                        Console.WriteLine("");
-                        AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
-                        Console.WriteLine("");
-                        opcionVerGanadores = Console.ReadLine();
-                    }
+                    Console.WriteLine("");
+                    AnsiConsole.Markup($"[Red]INVOCADOR, NADIE HA PODIDO LLEGAR HASTA LA GLORIA ETERNA, INTENTA SER EL PRIMERO!!![/]");
+                    Console.WriteLine("");
+                    bandera3 = 1;
+                }
+            }
+            else
+            {
+                if (verGanadores == 0)
+                {
+                    Console.WriteLine("");
+                    AnsiConsole.Markup($"[Red]INVOCADOR, QUIZAS PODRIAS HABER APRENDIDO ALGO DE ELLOS...[/]");
+                    Console.WriteLine("");
+                    bandera3 = 1;
+                }
+                else
+                {
+                    Console.WriteLine("");
+                    AnsiConsole.Markup($"[Red]Hubo un error inesperado, ingresa nuevamente la opcion.[/]");
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+                    AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+                    Console.WriteLine("");
+                    Console.WriteLine("");
+                    opcionVerGanadores = Console.ReadLine();
                 }
             }
         }
+        else
+        {
+            AnsiConsole.Markup($"[Red]Hubo un error inesperado, ingresa nuevamente la opcion.[/]");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+            Console.WriteLine("");
+             Console.WriteLine("");
+            opcionVerGanadores = Console.ReadLine();
+        }
     }
+
+
+    //PREGUNTAR SI QUIERE VOLVER A JUGAR
     Console.WriteLine("");
     AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? 0=NO , 1=SI [/]");
     Console.WriteLine("");
@@ -281,7 +307,9 @@ while (seguirJugando != 1)
             Console.WriteLine("");
             AnsiConsole.Markup($"[Red]INVOCADOR, nuestro sistema no conoce esa decision![/]");
             Console.WriteLine("");
+            Console.WriteLine("");
             AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
+            Console.WriteLine("");
             opcionSeguirJugando = Console.ReadLine();
         }
     }

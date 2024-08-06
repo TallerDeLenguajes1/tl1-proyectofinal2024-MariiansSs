@@ -214,6 +214,8 @@ public class FabricaDePersonajes
                 else
                 {
                     AnsiConsole.Markup("[Red]Lo siento!, por ahora no tenemos disponible esa opcion, porfavor, elige nuevamente las anteriormente mencionadas[/]");
+                    Console.WriteLine("");
+                    Console.WriteLine("");
                     string nuevaOpcion = Console.ReadLine();
 
                     if (int.TryParse(nuevaOpcion, out opcion))
@@ -223,6 +225,8 @@ public class FabricaDePersonajes
                     else
                     {
                         AnsiConsole.Markup("[Red]Demasiados intentos Invocador, hemos elegido un personaje aleatorio para ti![/]");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
                         opcion = personajeRandom.Next(0, 10);
                     }
                 }
