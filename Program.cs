@@ -26,7 +26,7 @@ HistorialJson jsonHistorialCombates = new HistorialJson(nombreHistorialArchivo);
 rankingGanadores jsonRankingGanadores = new rankingGanadores(nombreRankingArchivo);
 Combate combates = new Combate();
 int opcionPersonaje;
-string caracterOpcionPersonaje, opcionSeguirJugando;
+string caracterOpcionPersonaje, opcionSeguirJugando, nombreRankingHistorico;
 int bandera = 0, bandera2 = 0, ganaLocal = 1, seguirJugando = 0;
 const int TIEMPO_ESPERA = 1500;
 
@@ -153,6 +153,12 @@ while (seguirJugando != 1)
         Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
         AnsiConsole.Markup("[Cyan]ERES EL GANADOR!![/]");
+        Thread.Sleep(TIEMPO_ESPERA);
+        Console.WriteLine("");
+        AnsiConsole.Markup("[Cyan]INVOCADOR, INGRESA TU NOMBRE PARA QUE QUEDE EN LA GLORIA ETERNA[/]");
+        nombreRankingHistorico = Console.ReadLine();
+        Thread.Sleep(TIEMPO_ESPERA);
+
 
     }
 
