@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading;
 using HistorialJsonSpace;
 using climaApi;
+using rankingGanadoresJson;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-string nombreArchivo = @"json\Personajes.json";
-string historialArchivo = @"json\Historial.json";
+string nombrePersonajesArchivo = @"json\Personajes.json";
+string nombreHistorialArchivo = @"json\Historial.json";
+string nombreRankingArchivo = @"json\RankingHistorico.json";
 Mensajes narrador = new Mensajes(); //Mostrar mensajes
 mostrarPanel paneles = new mostrarPanel(); // Mostrar paneles
 List<Personaje> listaPersonajes = new List<Personaje>(); //Para ir avanzando en el combate y sacando de la lista
@@ -19,8 +21,9 @@ List<Partida> historialPartidas = new List<Partida>();
 Personaje personajeElegido = new Personaje(); // Personaje jugador
 Personaje oponenteGenerado = new Personaje(); // Personaje oponente
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes(); // Para crear Personajes
-PersonajesJson jsonPersonajes = new PersonajesJson(nombreArchivo);
-HistorialJson jsonHistorialCombates = new HistorialJson(historialArchivo);
+PersonajesJson jsonPersonajes = new PersonajesJson(nombrePersonajesArchivo);
+HistorialJson jsonHistorialCombates = new HistorialJson(nombreHistorialArchivo);
+rankingGanadores jsonRankingGanadores = new rankingGanadores(nombreRankingArchivo);
 Combate combates = new Combate();
 int opcionPersonaje;
 string caracterOpcionPersonaje, opcionSeguirJugando;
@@ -40,20 +43,20 @@ narrador.mensajeIntroduccion();
 while (seguirJugando != 1)
 {
     // VERIFICO SI EXISTEN LOS PERSONAJES, SI NO, LOS CREO
-    if (jsonPersonajes.Existe(nombreArchivo))
+    if (jsonPersonajes.Existe(nombrePersonajesArchivo))
     {
-        listaPersonajes = jsonPersonajes.LeerPersonajes(nombreArchivo); // Lee los Personajes del json y guardo en la lista
+        listaPersonajes = jsonPersonajes.LeerPersonajes(nombrePersonajesArchivo); // Lee los Personajes del json y guardo en la lista
     }
     else
     {
         listaPersonajes = fabricarPersonaje.CrearPersonajes(); // Crea los Personajes y los guardo en una lista
-        jsonPersonajes.GuardarPersonajes(listaPersonajes, nombreArchivo); // Guardo los Personajes en el json
+        jsonPersonajes.GuardarPersonajes(listaPersonajes, nombrePersonajesArchivo); // Guardo los Personajes en el json
     }
 
     // VERIFICO SI EXISTE UN HISTORIAL VIEJO Y LO BORRO
-    if (jsonHistorialCombates.Existe(historialArchivo))
+    if (jsonHistorialCombates.Existe(nombreHistorialArchivo))
     {
-        File.Delete(historialArchivo);
+        File.Delete(nombreHistorialArchivo);
     }
 
     // ELEGIENDO PERSONAJE
@@ -105,7 +108,7 @@ while (seguirJugando != 1)
 
         if (combateActual == 1)
         { // si gano, guardo gadaor
-            jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.getDatos.Name} ES EL GANADOR", historialArchivo); // guardo ganador
+            jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.getDatos.Name} ES EL GANADOR", nombreHistorialArchivo); // guardo ganador
 
             oponenteGenerado = fabricarPersonaje.generarOponente(listaPersonajes);
             if (listaPersonajes.Count > 1)
@@ -127,18 +130,18 @@ while (seguirJugando != 1)
                 combateActual = combates.iniciarCombate(personajeElegido, oponenteGenerado, estadoClima.Current.Condition.Text);
                 if (combateActual == 1)
                 {
-                    jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.getDatos.Name} ES EL GANADOR", historialArchivo); // guardo ganador
+                    jsonHistorialCombates.GuardarGanador(personajeElegido, oponenteGenerado, $"{personajeElegido.getDatos.Name} ES EL GANADOR", nombreHistorialArchivo); // guardo ganador
                 }
                 else
                 {
-                    jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.getDatos.Name} TE HA DERROTADO", historialArchivo); // guardo ganador 
+                    jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.getDatos.Name} TE HA DERROTADO", nombreHistorialArchivo); // guardo ganador 
                 }
             }
 
         }
         else
         { // si pierdo guardo como perdedor
-            jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.getDatos.Name} TE HA DERROTADO", historialArchivo); // guardo ganador
+            jsonHistorialCombates.GuardarGanador(oponenteGenerado, personajeElegido, $"{oponenteGenerado.getDatos.Name} TE HA DERROTADO", nombreHistorialArchivo); // guardo ganador
         }
         ganaLocal = combateActual;
         listaPersonajes.Remove(oponenteGenerado);
@@ -150,6 +153,7 @@ while (seguirJugando != 1)
         Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
         AnsiConsole.Markup("[Cyan]ERES EL GANADOR!![/]");
+
     }
 
     // Muestro el historial de partidas
@@ -158,16 +162,16 @@ while (seguirJugando != 1)
     AnsiConsole.Markup("[RED]HISTORIAL DE COMBATES[/]");
     Thread.Sleep(TIEMPO_ESPERA);
     Console.WriteLine("");
-    List<Partida> historial = jsonHistorialCombates.LeerGanadores(historialArchivo);
-    int i = 1;
+    List<Partida> historial = jsonHistorialCombates.LeerGanadores(nombreHistorialArchivo);
+    int numeroCombate = 1;
     foreach (var partida in historial)
     {
         Console.WriteLine("");
-        var tablaHistorial = new Table().Title($"[Blue]COMBATE {i}[/]");
+        var tablaHistorial = new Table().Title($"[Blue]COMBATE {numeroCombate}[/]");
         tablaHistorial.Border(TableBorder.Ascii2).BorderColor(Color.DarkGoldenrod);
         tablaHistorial.AddColumn($"[CYAN]{partida.Ganador.getDatos.Name}[/] vs [RED]{partida.Perdedor.getDatos.Name}[/]");
         tablaHistorial.AddRow($"[BLACK]{partida.Informacion}[/]");
-        i++;
+        numeroCombate++;
         AnsiConsole.Render(tablaHistorial);
         Thread.Sleep(TIEMPO_ESPERA);
     }
@@ -186,7 +190,7 @@ while (seguirJugando != 1)
             if (seguirJugando == 1)
             {
                 AnsiConsole.Markup($"[Red]REINICIANDO...[/]");
-                File.Delete(historialArchivo); // ELIMINO EL HISTORIAL DE LA PARTIDA
+                File.Delete(nombreHistorialArchivo); // ELIMINO EL HISTORIAL DE LA PARTIDA
                 seguirJugando = 0; // Para que siga el juego
                 bandera2 = 1; // Para que salga de este ciclo
                 bandera = 0; // Para que muestre nuevamente el personaje elegido

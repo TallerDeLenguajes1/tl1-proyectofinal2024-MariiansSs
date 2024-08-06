@@ -1,1 +1,76 @@
-[{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":2,"Pociondevida":76},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":4,"Destreza":8,"Fuerza":1,"Armadura":5,"Salud":-16,"Nivelfuria":2,"Pociondevida":45},"getDatos":{"Name":"Lucian","Region":"Demacia","Tipoclase":"Tirador","Frase":"NO HABRA PERDON!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":2,"Pociondevida":25},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":4,"Destreza":8,"Fuerza":10,"Armadura":8,"Salud":-87,"Nivelfuria":3,"Pociondevida":20},"getDatos":{"Name":"Ashe","Region":"Freljord","Tipoclase":"Tirador","Frase":"FUEGO A DISCRECION!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":1,"Pociondevida":39},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":7,"Destreza":2,"Fuerza":4,"Armadura":4,"Salud":-6,"Nivelfuria":2,"Pociondevida":62},"getDatos":{"Name":"Darius","Region":"Noxus","Tipoclase":"Luchador","Frase":"NO PUEDES ESCAPAR!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":1,"Pociondevida":27},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":5,"Destreza":5,"Fuerza":2,"Armadura":7,"Salud":-19,"Nivelfuria":3,"Pociondevida":40},"getDatos":{"Name":"Sejuani","Region":"Freljord","Tipoclase":"Luchador","Frase":"CONGELATE!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":3,"Pociondevida":18},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":1,"Destreza":8,"Fuerza":1,"Armadura":1,"Salud":-61,"Nivelfuria":2,"Pociondevida":78},"getDatos":{"Name":"Samira","Region":"Noxus","Tipoclase":"Tirador","Frase":"VAMOS, VAMOS, VAMOS!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":1,"Pociondevida":15},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":3,"Destreza":6,"Fuerza":2,"Armadura":9,"Salud":-4,"Nivelfuria":1,"Pociondevida":32},"getDatos":{"Name":"Swain","Region":"Noxus","Tipoclase":"Mago","Frase":"EL PODER DEL IMPERIO!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":3,"Pociondevida":50},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":6,"Destreza":8,"Fuerza":6,"Armadura":3,"Salud":-6,"Nivelfuria":2,"Pociondevida":29},"getDatos":{"Name":"Garen","Region":"Demacia","Tipoclase":"Luchador","Frase":"JUUSTIICIAAAA!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":1,"Pociondevida":75},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":1,"Destreza":2,"Fuerza":1,"Armadura":5,"Salud":-122,"Nivelfuria":1,"Pociondevida":25},"getDatos":{"Name":"Lux","Region":"Demacia","Tipoclase":"Mago","Frase":"INCANDESCENCIA!!!"}},"Informacion":"RekSai ES EL GANADOR"},{"Ganador":{"getCaracteristicas":{"Velocidad":7,"Destreza":8,"Fuerza":9,"Armadura":7,"Salud":100,"Nivelfuria":1,"Pociondevida":71},"getDatos":{"Name":"RekSai","Region":"Vacio","Tipoclase":"Luchador","Frase":"*Rugidos y ruidos extranios*"}},"Perdedor":{"getCaracteristicas":{"Velocidad":5,"Destreza":2,"Fuerza":6,"Armadura":3,"Salud":-44,"Nivelfuria":3,"Pociondevida":25},"getDatos":{"Name":"Lissandra","Region":"Freljord","Tipoclase":"Mago","Frase":"CONGELATE Y ROMPE!!!"}},"Informacion":"RekSai ES EL GANADOR"}]
+[
+    {
+        "Ganador": {
+            "getCaracteristicas": {
+                "Velocidad": 4,
+                "Destreza": 8,
+                "Fuerza": 1,
+                "Armadura": 5,
+                "Salud": 100,
+                "Nivelfuria": 1,
+                "Pociondevida": 66
+            },
+            "getDatos": {
+                "Name": "Lucian",
+                "Region": "Demacia",
+                "Tipoclase": "Tirador",
+                "Frase": "NO HABRA PERDON!!!"
+            }
+        },
+        "Perdedor": {
+            "getCaracteristicas": {
+                "Velocidad": 1,
+                "Destreza": 2,
+                "Fuerza": 1,
+                "Armadura": 5,
+                "Salud": -13,
+                "Nivelfuria": 1,
+                "Pociondevida": 78
+            },
+            "getDatos": {
+                "Name": "Lux",
+                "Region": "Demacia",
+                "Tipoclase": "Mago",
+                "Frase": "INCANDESCENCIA!!!"
+            }
+        },
+        "Informacion": "Lucian ES EL GANADOR"
+    },
+    {
+        "Ganador": {
+            "getCaracteristicas": {
+                "Velocidad": 5,
+                "Destreza": 2,
+                "Fuerza": 6,
+                "Armadura": 3,
+                "Salud": 69,
+                "Nivelfuria": 0,
+                "Pociondevida": 54
+            },
+            "getDatos": {
+                "Name": "Lissandra",
+                "Region": "Freljord",
+                "Tipoclase": "Mago",
+                "Frase": "CONGELATE Y ROMPE!!!"
+            }
+        },
+        "Perdedor": {
+            "getCaracteristicas": {
+                "Velocidad": 4,
+                "Destreza": 8,
+                "Fuerza": 1,
+                "Armadura": 5,
+                "Salud": -4,
+                "Nivelfuria": 1,
+                "Pociondevida": 25
+            },
+            "getDatos": {
+                "Name": "Lucian",
+                "Region": "Demacia",
+                "Tipoclase": "Tirador",
+                "Frase": "NO HABRA PERDON!!!"
+            }
+        },
+        "Informacion": "Lissandra TE HA DERROTADO"
+    }
+]
