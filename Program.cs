@@ -41,16 +41,16 @@ narrador.mensajeIntroduccion();
 
 while (seguirJugando != 1)
 {
-    // VERIFICO SI EXISTEN LOS PERSONAJES, SI NO, LOS CREO
+    // SI EXISTE UNA LISTA DE PERSONAJES LA BORRA
     if (jsonPersonajes.Existe(nombrePersonajesArchivo))
     {
-        listaPersonajes = jsonPersonajes.LeerPersonajes(nombrePersonajesArchivo); // Lee los Personajes del json y guardo en la lista
+        File.Delete(nombrePersonajesArchivo);
     }
-    else
-    {
-        listaPersonajes = fabricarPersonaje.CrearPersonajes(); // Crea los Personajes y los guardo en una lista
-        jsonPersonajes.GuardarPersonajes(listaPersonajes, nombrePersonajesArchivo); // Guardo los Personajes en el json
-    }
+    listaPersonajes.Clear(); // LIMPIO LA LISTA PARA ASGINAR NUEVAMENTE LOS PERSONAJES
+    
+    // VUELVO A CREAR LOS PERSONAJES
+    listaPersonajes = fabricarPersonaje.CrearPersonajes(); // Crea los Personajes y los guardo en una lista
+    jsonPersonajes.GuardarPersonajes(listaPersonajes, nombrePersonajesArchivo); // Guardo los Personajes en el json
 
     // VERIFICO SI EXISTE UN HISTORIAL VIEJO Y LO BORRO
     if (jsonHistorialCombates.Existe(nombreHistorialArchivo))
@@ -151,7 +151,7 @@ while (seguirJugando != 1)
     if (ganaLocal == 1)
     {
         Console.WriteLine("");
-        AnsiConsole.Markup("[Cyan]Felicidades Invocador, no queda mas nadie en el campo de batalla![/]");
+        AnsiConsole.Markup("[Cyan]FELICIDADES INVOCADOR, NO QUEDA MAS NADIE EN EL CAMPO DE BATALLA![/]");
         Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
         AnsiConsole.Markup("[Cyan]ERES EL GANADOR!!![/]");
@@ -194,7 +194,8 @@ while (seguirJugando != 1)
 
     //MUESTRA DEL RANKING HISTORICO
     Console.WriteLine("");
-    AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+    AnsiConsole.Markup($"[Red]INVOCADOR, DESEAS VER EL RANKING HISTORICO DE GANADORES? 0=NO , 1=SI [/]");
+    Console.WriteLine("");
     opcionVerGanadores = Console.ReadLine();
     bandera3 = 0;
     while (bandera3 != 1)
@@ -212,7 +213,7 @@ while (seguirJugando != 1)
                         Console.WriteLine("");
                         var tablaGanadores = new Table().Title($"[Blue]GANADOR {numeroGanador}[/]");
                         tablaGanadores.AddColumn("[RED]NOMBRE/ALIAS[/]");
-                        tablaGanadores.AddColumn($"{Ganadores.NombreGanador}");
+                        tablaGanadores.AddColumn($"[Blue]{Ganadores.NombreGanador}[/]");
                         tablaGanadores.AddColumn($"[RED]FECHA[/]");
                         tablaGanadores.AddColumn($"{Ganadores.Fecha}");
                         tablaGanadores.AddColumn("[RED]PERSONAJE UTILIZADO[/]");
@@ -237,7 +238,7 @@ while (seguirJugando != 1)
                 if (verGanadores == 0)
                 {
                     Console.WriteLine("");
-                    AnsiConsole.Markup($"[Red]INVOCADOR, QUIZAS PODRIAS HABER APRENDIDO ALGO DE ELLOS...[/]");
+                    AnsiConsole.Markup($"[Red]QUIZAS PODRIAS HABER APRENDIDO ALGO DE ELLOS...[/]");
                     Console.WriteLine("");
                     bandera3 = 1;
                 }
@@ -247,7 +248,7 @@ while (seguirJugando != 1)
                     AnsiConsole.Markup($"[Red]Hubo un error inesperado, ingresa nuevamente la opcion.[/]");
                     Console.WriteLine("");
                     Console.WriteLine("");
-                    AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+                    AnsiConsole.Markup($"[Red]INVOCADOR, DESEAS VER EL RANKING HISTORICO DE GANADORES? 0=NO , 1=SI [/]");
                     Console.WriteLine("");
                     Console.WriteLine("");
                     opcionVerGanadores = Console.ReadLine();
@@ -259,7 +260,7 @@ while (seguirJugando != 1)
             AnsiConsole.Markup($"[Red]Hubo un error inesperado, ingresa nuevamente la opcion.[/]");
             Console.WriteLine("");
             Console.WriteLine("");
-            AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+            AnsiConsole.Markup($"[Red]INVOCADOR, DESEAS VER EL RANKING HISTORICO DE GANADORES? 0=NO , 1=SI [/]");
             Console.WriteLine("");
              Console.WriteLine("");
             opcionVerGanadores = Console.ReadLine();
@@ -269,7 +270,7 @@ while (seguirJugando != 1)
 
     //PREGUNTAR SI QUIERE VOLVER A JUGAR
     Console.WriteLine("");
-    AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? 0=NO , 1=SI [/]");
+    AnsiConsole.Markup($"[Red]INVOCADOR, DESEAS VOLVER A JUGAR? 0=NO , 1=SI [/]");
     Console.WriteLine("");
     opcionSeguirJugando = Console.ReadLine();
     bandera2 = 0;
@@ -296,7 +297,7 @@ while (seguirJugando != 1)
                 }
                 else
                 {
-                    AnsiConsole.Markup($"[Red]INVOCADOR, hubo un error inesperado asi que el juego terminara!, HASTA LUEGO[/]");
+                    AnsiConsole.Markup($"[Red]INVOCADOR, HUBO UN ERROR INESPERADO ASI QUE EL JUEGO TERMINARA!, HASTA LUEGO[/]");
                     seguirJugando = 1;
                     bandera2 = 1;
                 }
@@ -305,10 +306,10 @@ while (seguirJugando != 1)
         else
         {
             Console.WriteLine("");
-            AnsiConsole.Markup($"[Red]INVOCADOR, nuestro sistema no conoce esa decision![/]");
+            AnsiConsole.Markup($"[Red]Nuestro sistema no conoce esa decision![/]");
             Console.WriteLine("");
             Console.WriteLine("");
-            AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar?[/]");
+            AnsiConsole.Markup($"[Red]INVOCADOR, DESEAS VOLVER A JUGAR? 0=NO , 1=SI[/]");
             Console.WriteLine("");
             opcionSeguirJugando = Console.ReadLine();
         }

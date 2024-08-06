@@ -184,7 +184,7 @@ public class FabricaDePersonajes
     {
         Random ER = new Random(); // ESTADISTICA RANDOM 
 
-        listaPersonajes.Add(new Personaje(ER.Next(10, 110), ER.Next(10, 110), ER.Next(10, 110), ER.Next(10, 110), "Garen", "Demacia", "Luchador", "JUUSTIICIAAAA!!!"));
+        listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Garen", "Demacia", "Luchador", "JUUSTIICIAAAA!!!"));
         listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lux", "Demacia", "Mago", "INCANDESCENCIA!!!"));
         listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Lucian", "Demacia", "Tirador", "NO HABRA PERDON!!!"));
         listaPersonajes.Add(new Personaje(ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), ER.Next(1, 11), "Darius", "Noxus", "Luchador", "NO PUEDES ESCAPAR!!!"));
