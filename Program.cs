@@ -174,7 +174,7 @@ while (seguirJugando != 1)
     // Muestro el historial de partidas
     Console.WriteLine("");
     Console.WriteLine("");
-    AnsiConsole.Markup("[RED]HISTORIAL DE COMBATES[/]");
+    AnsiConsole.Markup("[RED][italic]HISTORIAL DE COMBATES[/][/]");
     Thread.Sleep(TIEMPO_ESPERA);
     Console.WriteLine("");
     List<Partida> historial = jsonHistorialCombates.LeerGanadores(nombreHistorialArchivo);
@@ -208,6 +208,8 @@ while (seguirJugando != 1)
                 {
                     historialGanadores = jsonRankingGanadores.LeerGanadores(nombreArchivoRanking);
                     int numeroGanador = 1;
+                    Console.WriteLine("");
+                    AnsiConsole.Markup("[RED][italic]RANKING HISTORICO DE GANADORES[/][/]");
                     foreach (var Ganadores in historialGanadores)
                     {
                         Console.WriteLine("");
@@ -215,9 +217,9 @@ while (seguirJugando != 1)
                         tablaGanadores.AddColumn("[RED]NOMBRE/ALIAS[/]");
                         tablaGanadores.AddColumn($"[Blue]{Ganadores.NombreGanador}[/]");
                         tablaGanadores.AddColumn($"[RED]FECHA[/]");
-                        tablaGanadores.AddColumn($"{Ganadores.Fecha}");
+                        tablaGanadores.AddColumn($"[Blue]{Ganadores.Fecha}[/]");
                         tablaGanadores.AddColumn("[RED]PERSONAJE UTILIZADO[/]");
-                        tablaGanadores.AddColumn($"{Ganadores.personajeUtilizado.getDatos.Name}");
+                        tablaGanadores.AddColumn($"[Blue]{Ganadores.personajeUtilizado.getDatos.Name}[/]");
                         tablaGanadores.Border(TableBorder.Ascii2).BorderColor(Color.DarkGoldenrod);
                         numeroGanador++;
                         AnsiConsole.Render(tablaGanadores); // Mostrar tabla
