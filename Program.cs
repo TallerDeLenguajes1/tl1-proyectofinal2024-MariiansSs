@@ -13,28 +13,27 @@ using System.Text.Json;
 
 string nombrePersonajesArchivo = @"json\Personajes.json";
 string nombreHistorialArchivo = @"json\Historial.json";
-string nombreRankingArchivo = @"json\RankingHistorico.json";
+string nombreArchivoRanking = @"json\RankingHistorico.json";
 Mensajes narrador = new Mensajes(); //Mostrar mensajes
 mostrarPanel paneles = new mostrarPanel(); // Mostrar paneles
 List<Personaje> listaPersonajes = new List<Personaje>(); //Para ir avanzando en el combate y sacando de la lista
-List<Partida> historialPartidas = new List<Partida>();
+List<Partida> historialPartidas = new List<Partida>(); // Lista para mostrar historial de combates
+List<Ganador> historialGanadores = new List<Ganador>();
 Personaje personajeElegido = new Personaje(); // Personaje jugador
 Personaje oponenteGenerado = new Personaje(); // Personaje oponente
 FabricaDePersonajes fabricarPersonaje = new FabricaDePersonajes(); // Para crear Personajes
 PersonajesJson jsonPersonajes = new PersonajesJson(nombrePersonajesArchivo);
 HistorialJson jsonHistorialCombates = new HistorialJson(nombreHistorialArchivo);
-rankingGanadores jsonRankingGanadores = new rankingGanadores(nombreRankingArchivo);
+rankingGanadores jsonRankingGanadores = new rankingGanadores(nombreArchivoRanking);
 Combate combates = new Combate();
 int opcionPersonaje;
-string caracterOpcionPersonaje, opcionSeguirJugando, nombreRankingHistorico;
-int bandera = 0, bandera2 = 0, ganaLocal = 1, seguirJugando = 0;
+string caracterOpcionPersonaje, opcionSeguirJugando, nombreRankingHistorico, opcionVerGanadores;
+int bandera = 0, bandera2 = 0, bandera3 = 0, ganaLocal = 1, seguirJugando = 0, verGanadores;
 const int TIEMPO_ESPERA = 1500;
 
 
 // CONSUMO DE API
 Root estadoClima = await servicioClima.ObtenerClima(); // OBTENGO EL CLIMA
-
-
 
 // PRESENTACION DEL JUEGO
 narrador.Bienvenida();
@@ -59,6 +58,7 @@ while (seguirJugando != 1)
         File.Delete(nombreHistorialArchivo);
     }
 
+
     // ELEGIENDO PERSONAJE
     narrador.preguntaSobrePersonaje();
     Thread.Sleep(TIEMPO_ESPERA);
@@ -75,7 +75,7 @@ while (seguirJugando != 1)
 
             //PANEL VISUAL DE PERSONAJE ELEGIDO
             paneles.mostrarPersonajeElegido(personajeElegido);
-            
+
             listaPersonajes.Remove(personajeElegido);
 
 
@@ -90,10 +90,12 @@ while (seguirJugando != 1)
         }
     }
 
+
     //GENERANDO OPONENTE
     oponenteGenerado = fabricarPersonaje.generarOponente(listaPersonajes);
     listaPersonajes.Remove(oponenteGenerado);
     Console.WriteLine("");
+
 
     //PANEL VISUAL DE OPONENTE GENERADO
     paneles.mostrarOponente1(oponenteGenerado);
@@ -104,7 +106,7 @@ while (seguirJugando != 1)
     //COMBATE
     while (ganaLocal == 1 && listaPersonajes.Count != 0)
     {
-        int combateActual = combates.iniciarCombate(personajeElegido, oponenteGenerado,estadoClima.Current.Condition.Text);
+        int combateActual = combates.iniciarCombate(personajeElegido, oponenteGenerado, estadoClima.Current.Condition.Text);
 
         if (combateActual == 1)
         { // si gano, guardo gadaor
@@ -152,13 +154,20 @@ while (seguirJugando != 1)
         AnsiConsole.Markup("[Cyan]Felicidades Invocador, no queda mas nadie en el campo de batalla![/]");
         Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
-        AnsiConsole.Markup("[Cyan]ERES EL GANADOR!![/]");
+        AnsiConsole.Markup("[Cyan]ERES EL GANADOR!!![/]");
         Thread.Sleep(TIEMPO_ESPERA);
         Console.WriteLine("");
-        AnsiConsole.Markup("[Cyan]INVOCADOR, INGRESA TU NOMBRE PARA QUE QUEDE EN LA GLORIA ETERNA[/]");
+        AnsiConsole.Markup("[Cyan]INVOCADOR, INGRESA TU NOMBRE/ALIAS PARA QUE QUEDE EN LA GLORIA ETERNA[/]");
+        Console.WriteLine("");
         nombreRankingHistorico = Console.ReadLine();
         Thread.Sleep(TIEMPO_ESPERA);
 
+        //GUARDO EL GANADOR DE TODOS LOS COMBATES
+        if (nombreArchivoRanking != null)
+        {
+            jsonRankingGanadores.GuardarGanador(nombreRankingHistorico, personajeElegido, nombreArchivoRanking);
+
+        }
 
     }
 
@@ -182,8 +191,57 @@ while (seguirJugando != 1)
         Thread.Sleep(TIEMPO_ESPERA);
     }
 
-
-
+    Console.WriteLine("");
+    AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+    opcionVerGanadores = Console.ReadLine();
+    bandera3 = 0;
+    while (bandera3 != 1)
+    {
+        if (int.TryParse(opcionVerGanadores, out verGanadores))
+        {
+            if (verGanadores == 1)
+            {
+                if (jsonRankingGanadores.Existe(nombreArchivoRanking))
+                {
+                    historialGanadores = jsonRankingGanadores.LeerGanadores(nombreArchivoRanking);
+                    int numeroGanador = 1;
+                    foreach (var Ganadores in historialGanadores)
+                    {
+                        Console.WriteLine("");
+                        var tablaGanadores = new Table().Title($"[Blue]GANADOR {numeroGanador}[/]");
+                        tablaGanadores.AddColumn("[RED]NOMBRE/ALIAS[/]");
+                        tablaGanadores.AddColumn($"{Ganadores.NombreGanador}");
+                        tablaGanadores.AddColumn($"[RED]FECHA[/]");
+                        tablaGanadores.AddColumn($"{Ganadores.Fecha}");
+                        tablaGanadores.AddColumn("[RED]PERSONAJE UTILIZADO[/]");
+                        tablaGanadores.AddColumn($"{Ganadores.personajeUtilizado.getDatos.Name}");
+                        tablaGanadores.Border(TableBorder.Ascii2).BorderColor(Color.DarkGoldenrod);
+                        numeroGanador++;
+                        AnsiConsole.Render(tablaGanadores); // Mostrar tabla
+                        Thread.Sleep(TIEMPO_ESPERA);
+                    }
+                    bandera3 = 1;
+                }
+                else
+                {
+                    if (verGanadores == 0)
+                    {
+                        Console.WriteLine("");
+                        AnsiConsole.Markup($"[Red]INVOCADOR, QUIZAS PODRIAS HABER APRENDIDO ALGO DE ELLOS...[/]");
+                        bandera3 = 1;
+                    }
+                    else
+                    {
+                        AnsiConsole.Markup($"[Red]INVOCADOR, hubo un error inesperado, ingresa nuevamente la opcion.[/]");
+                        Console.WriteLine("");
+                        AnsiConsole.Markup($"[Red]INVOCADOR, Deseas ver el ranking historico de ganadores? 0=NO , 1=SI [/]");
+                        Console.WriteLine("");
+                        opcionVerGanadores = Console.ReadLine();
+                    }
+                }
+            }
+        }
+    }
     Console.WriteLine("");
     AnsiConsole.Markup($"[Red]INVOCADOR, Deseas volver a jugar? 0=NO , 1=SI [/]");
     Console.WriteLine("");

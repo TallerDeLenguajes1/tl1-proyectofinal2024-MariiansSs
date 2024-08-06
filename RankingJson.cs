@@ -2,6 +2,7 @@ namespace rankingGanadoresJson;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using helperJson;
+using PersonajesSpace;
 
 public class rankingGanadores
 {
@@ -12,7 +13,7 @@ public class rankingGanadores
     {
         this.nombreArchivo = NombreArchivo;
     }
-    public void GuardarGanador(string nombreGanador ,string nombreArchivo)
+    public void GuardarGanador(string nombreGanador ,Personaje personajeUtilizado, string nombreArchivo)
     {
         DateTime fecha = DateTime.Now;
         string fechaFormateada = fecha.ToString("dd-MM-yyyy HH:mm:ss");
@@ -22,7 +23,7 @@ public class rankingGanadores
             historial = LeerGanadores(nombreArchivo);
         }
 
-        historial.Add(new Ganador { NombreGanador = nombreGanador, Fecha = fechaFormateada});
+        historial.Add(new Ganador { NombreGanador = nombreGanador, personajeUtilizado = personajeUtilizado, Fecha = fechaFormateada});
         string rankingGanadores = JsonSerializer.Serialize(historial);
         helperArchivos.GuardarPersonajes(nombreArchivo, rankingGanadores);
     }
@@ -58,4 +59,6 @@ public class Ganador
     public string NombreGanador { get; set; }
 
     public string Fecha { get; set; }
+
+    public Personaje personajeUtilizado {get; set;}
 }
