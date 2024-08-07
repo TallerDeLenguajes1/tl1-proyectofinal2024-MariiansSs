@@ -11,7 +11,7 @@
 #### Combate
 - El combate será uno contra uno, por turnos (De forma automatica).
 - Durante los turnos, un personaje ataca y el otro se defiende.
-- Los personajes también tienen la opción de curarse durante su turno. Además, pueden usar su definitiva, que multiplica su daño por 2.
+- Los personajes también tienen la opción de curarse durante su turno(Maximo 2 veces). Además, pueden usar su definitiva, que multiplica su daño por 2.
 - Solo uno será el ganador de cada combate.
 
 #### Continuidad del Juego

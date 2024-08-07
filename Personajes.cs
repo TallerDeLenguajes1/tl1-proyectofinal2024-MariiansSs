@@ -67,7 +67,7 @@ public class Personaje
             this.armadura = Armadura;
             this.salud = 100;
             this.nivelFuria = 0;
-            this.pocionDeVida = numeroRandom.Next(1, 81);
+            this.pocionDeVida = numeroRandom.Next(1, 41);
         }
     }
 
