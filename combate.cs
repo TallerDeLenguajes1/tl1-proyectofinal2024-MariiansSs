@@ -68,7 +68,6 @@ public class Combate
     {
         int decision = 0;
         int danio;
-        int cantPociones = 2;
         Random decisionAleatoria = new Random();
         int decisionPersonaje;
         if (Atacante.getCaracteristicas.Salud > 0)
@@ -81,10 +80,9 @@ public class Combate
                 decision = 1;
             }else
             {
-                if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30 && cantPociones != 0)
-                {
-                cantPociones--; // Solo puede curarse dos veces por combate
-                Atacante.tomarPocion();
+                if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30)
+                { 
+                Atacante.tomarPocion(); // Solo puede curarse dos veces por combate
                 decision = 2;
                 }else
                 {
