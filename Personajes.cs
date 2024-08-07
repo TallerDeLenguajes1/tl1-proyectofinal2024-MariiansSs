@@ -109,7 +109,7 @@ public class Personaje
         int ataque = getCaracteristicas.Destreza * getCaracteristicas.Fuerza;
         int efectividad = efectividadRandom.Next(1, 101);
         int defensa = getCaracteristicas.Armadura * getCaracteristicas.Velocidad;
-        int ajuste = 50;
+        int ajuste = 55;
         int danioProvocado = ((ataque * efectividad) - defensa) / ajuste;
 
         if (getCaracteristicas.Nivelfuria == 3)

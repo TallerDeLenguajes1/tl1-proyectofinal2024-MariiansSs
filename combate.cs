@@ -14,7 +14,7 @@ public class Combate
 
     const int TIEMPO_ESPERA = 1300;
     public int iniciarCombate(Personaje PersonajeElegido, Personaje PersonajeOponente, string estadoClima)
-    {
+    { 
         int ganador = 0;
         while (PersonajeElegido.getCaracteristicas.Salud > 0 && PersonajeOponente.getCaracteristicas.Salud > 0)
         {
