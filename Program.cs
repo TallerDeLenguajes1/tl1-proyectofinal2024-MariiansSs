@@ -168,7 +168,6 @@ while (seguirJugando != 1)
             jsonRankingGanadores.GuardarGanador(nombreRankingHistorico, personajeElegido, nombreArchivoRanking);
 
         }
-
     }
 
     // Muestro el historial de partidas
