@@ -102,7 +102,6 @@ while (seguirJugando != 1)
     Thread.Sleep(TIEMPO_ESPERA);
     Console.WriteLine("");
 
-
     //COMBATE
     while (ganaLocal == 1 && listaPersonajes.Count != 0)
     {

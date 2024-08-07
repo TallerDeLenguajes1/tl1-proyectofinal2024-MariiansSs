@@ -78,20 +78,22 @@ public class Combate
                 danio = Atacante.atacar();
                 Defensor.restarSalud(danio);
                 decision = 1;
-            }else
+            }
+            else
             {
                 if (decisionPersonaje == 2 && Atacante.getCaracteristicas.Salud < 30)
-                { 
-                Atacante.tomarPocion(); // Solo puede curarse dos veces por combate
-                decision = 2;
-                }else
                 {
-                danio = Atacante.atacar();
-                Defensor.restarSalud(danio);
-                decision = 1;
+                    Atacante.tomarPocion(); // Solo puede curarse dos veces por combate
+                    decision = 2;
+                }
+                else
+                {
+                    danio = Atacante.atacar();
+                    Defensor.restarSalud(danio);
+                    decision = 1;
                 }
             }
-               
+
         }
         return decision;
     }
